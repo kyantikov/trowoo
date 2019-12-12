@@ -9,8 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     adjustedClose: DataTypes.DECIMAL,
     volume: DataTypes.INTEGER,
     dividendAmount: DataTypes.DECIMAL,
-    splitCoefficient: DataTypes.DECIMAL
-  }, {});
+    splitCoefficient: DataTypes.DECIMAL,
+  }, {
+    freezeTableName: true,
+    tableName: 'quote',
+  });
   quote.associate = function(models) {
     // associations can be defined here
   };

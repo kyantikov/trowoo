@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
     }
-  }, {});
+  }, {
+    freezeTableName: true,
+    tableName: 'security',
+  });
   security.associate = function(models) {
     // associations can be defined here
   };

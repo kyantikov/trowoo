@@ -1,9 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const position = sequelize.define('position', {
-    openedDate: DataTypes.STRING,
+    openedDate: DataTypes.DATE,
     cost: DataTypes.DECIMAL
-  }, {});
+  }, {
+    freezeTableName: true,
+    tableName: 'position',
+  });
   position.associate = function(models) {
     // associations can be defined here
   };
