@@ -1,51 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import * as OktaSignIn from '@okta/okta-signin-widget';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavigationStart, Router} from "@angular/router";
 
 import { OktaAuthService } from "@okta/okta-angular";
-import { NavigationStart, Router} from "@angular/router";
+import { AuthService } from "./auth.service";
 
 @Component({
   selector: 'app-auth',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  widget;
 
-  constructor(private oktaAuth: OktaAuthService, router: Router) {
+  constructor(private oktaAuth: OktaAuthService, router: Router, authService: AuthService) {
     // Show the widget when prompted, otherwise remove it from the DOM.
-    router.events.forEach(event => {
-      if (event instanceof NavigationStart) {
-        if (event.url === '/login') {
-        } else {
-          this.widget.remove();
+      this.widget = authService.getWidget();
+      router.events.forEach(event => {
+        if (event instanceof NavigationStart) {
+          if (event.url === '/login') {
+          } else {
+            this.widget.remove();
+          }
         }
-      }
-    });
+       }).then(r =>{console.log(r)});
   }
 
-  widget = new OktaSignIn({
-    baseUrl: 'https://dev-793026.okta.com',
-    registration: {
-      parseSchema: function(schema, onSuccess, onFailure) {
-         // handle parseSchema callback
-         onSuccess(schema);
-      },
-      preSubmit: function (postData, onSuccess, onFailure) {
-         // handle preSubmit callback
-         onSuccess(postData);
-      },
-      postSubmit: function (response, onSuccess, onFailure) {
-          // handle postsubmit callback
-         onSuccess(response);
-      }
-    },
-    features: {
-      registration: true,
-    }
-  });
-
   ngOnInit() {
-    this.widget.renderEl({el: '#okta-signin-container'},
+    this.widget.renderEl({el: '#widget-container'},
       (res) => {
         if (res.status === 'SUCCESS') {
           this.oktaAuth.loginRedirect('/dashboard', {sessionToken: res.session.token});

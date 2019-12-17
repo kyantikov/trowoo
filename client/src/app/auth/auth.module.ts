@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
 
 import { OktaAuthService } from "@okta/okta-angular";
-import {AuthRoutingModule} from "./auth-routing.module";
+import { AuthRoutingModule } from "./auth-routing.module";
+import { AuthService } from "./auth.service";
 
 
 @NgModule({
@@ -13,9 +14,11 @@ import {AuthRoutingModule} from "./auth-routing.module";
     CommonModule
   ],
   exports: [
-    AuthComponent,
     AuthRoutingModule
   ],
-  providers: [OktaAuthService]
+  providers: [
+    OktaAuthService,
+    AuthService,
+  ]
 })
 export class AuthModule { }

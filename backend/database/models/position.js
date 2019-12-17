@@ -1,8 +1,32 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const position = sequelize.define('position', {
-    openedDate: DataTypes.DATE,
-    cost: DataTypes.DECIMAL
+    openedDate: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      validate: {
+        isDate: {
+          args: true,
+          msg: 'Must be a valid date.'
+        },
+        // custom validator to confirm that date is not in the future
+        notFutureDate(value) {
+          if(value > new Date()){
+            throw new Error("Open date must be prior to today.")
+          }
+        },
+      }
+    },
+    cost: {
+      type:DataTypes.DECIMAL,
+      allowNull: true,
+      validate: {
+        isDecimal: {
+          args: true,
+          msg: 'Entered value must be a decimal.'
+        }
+      }
+    },
   }, {
     freezeTableName: true,
     tableName: 'position',

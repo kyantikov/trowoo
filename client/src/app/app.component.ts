@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {OktaAuthService} from "@okta/okta-angular";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { OktaAuthService } from "@okta/okta-angular";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'client';
