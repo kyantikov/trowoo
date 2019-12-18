@@ -3,7 +3,7 @@
 const noUpdateAttributes = require('sequelize-noupdate-attributes');
 
 module.exports = (sequelize, DataTypes) => {
-  // noUpdateAttributes(sequelize);
+  noUpdateAttributes(sequelize);
   const portfolio = sequelize.define('portfolio', {
     name: {
       type: DataTypes.STRING,

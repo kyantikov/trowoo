@@ -6,14 +6,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isUppercase: true,
+        isUppercase: {
+          args: true,
+          msg: 'Ticker must be all uppercase',
+        },
         notNull: {
           msg: 'Value can not be null.'
         },
         notEmpty: {
           args: true,
           msg: 'Security ticker is required.'
-        }
+        },
+        // custom validator which prevents against duplicate securities in the database (WIP)
+        // isUnique:
       }
     },
     name: {
