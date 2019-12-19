@@ -2,7 +2,9 @@
 const trowoo = require('../controllers/controller');
 
 module.exports = app => {
-  app.post('/security', (req, res) => {
+
+  // security related endpoints
+  app.post('/security', (req,res) => {
     trowoo.createSecurity(req,res);
   });
   app.route('/security/:id')
@@ -14,5 +16,25 @@ module.exports = app => {
     });
 
 
+  // portfolio related endpoints
+  app.route('/portfolio/:userId')
+    .post((req,res) => {
+      trowoo.createPortfolio(req,res)
+    })
+    .get((req,res) => {
+      trowoo.retrieveUserPortfolios(req,res);
+    });
+  // conditional deletion of portfolio
+  app.delete('/portfolio/:id', (req,res) => {
+    trowoo.deletePortfolio(req, res);
+  });
 
+
+  // position related endpoints
+  app.post('/position/:securityId/:portfolioId', (req,res) => {
+    trowoo.createPosition(req,res);
+  });
+  app.delete('/position/:id', (req,res) => {
+    trowoo.deletePosition(req, res);
+  });
 };

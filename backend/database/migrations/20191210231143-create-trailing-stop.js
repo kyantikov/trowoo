@@ -11,6 +11,16 @@ module.exports = {
       percent: {
         type: Sequelize.DECIMAL
       },
+      positionId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'position'
+          },
+          key: 'id',
+        },
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

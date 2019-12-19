@@ -37,7 +37,10 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'portfolio',
   });
   portfolio.associate = function(models) {
-    portfolio.hasMany(models.position, {foreignKey: 'portfolioId'});
+    portfolio.hasMany(models.position, {
+      foreignKey: 'portfolioId',
+      onDelete: 'CASCADE',
+    });
   };
   return portfolio;
 };

@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
   });
   position.associate = function(models) {
     // associations can be defined here
+    position.belongsTo(models.security, {
+      foreignKey: 'securityId',
+      onDelete: 'CASCADE',
+    })
   };
   return position;
 };

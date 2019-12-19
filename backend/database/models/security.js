@@ -39,8 +39,10 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'security',
   });
   security.associate = function(models) {
-    security.hasOne(models.position, {foreignKey: 'securityId'});
-    security.hasMany(models.quote, {foreignKey: 'securityId'});
+    security.hasMany(models.quote, {
+      foreignKey: 'securityId',
+      onDelete: 'CASCADE',
+    });
   };
   return security;
 };

@@ -8,6 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      securityId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'security'
+          },
+          key: 'id'
+        },
+        allowNull: false
+      },
       quoteDate: {
         type: Sequelize.DATE
       },

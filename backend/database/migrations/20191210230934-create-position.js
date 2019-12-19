@@ -14,6 +14,26 @@ module.exports = {
       cost: {
         type: Sequelize.DECIMAL
       },
+      portfolioId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: {
+              tableName: 'portfolio',
+            },
+            key: 'id'
+          },
+          allowNull: false,
+      },
+      securityId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'security'
+          },
+          key: 'id'
+        },
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
