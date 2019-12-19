@@ -36,7 +36,19 @@ module.exports = (sequelize, DataTypes) => {
     position.belongsTo(models.security, {
       foreignKey: 'securityId',
       onDelete: 'CASCADE',
-    })
+    });
+    position.hasOne(models.lowPrice, {
+      foreignKey: 'positionId',
+      onDelete: 'CASCADE',
+    });
+    position.hasOne(models.highPrice, {
+      foreignKey: 'positionId',
+      onDelete: 'CASCADE',
+    });
+    position.hasOne(models.trailingStop, {
+      foreignKey: 'positionId',
+      onDelete: 'CASCADE',
+    });
   };
   return position;
 };

@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'highPrice',
   });
   highPrice.associate = function(models) {
-    highPrice.belongsTo(models.position, {foreignKey: 'positionId'});
   };
   return highPrice;
 };

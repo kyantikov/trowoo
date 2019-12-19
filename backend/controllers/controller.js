@@ -49,7 +49,7 @@ module.exports = {
         id: req.params.id,
       }
     }).then(data => {
-      res.status(200).json({msg: `success-deleted: ${data} security`});
+      res.status(200).json({msg: 'success-deleted: security', res: data});
     }).catch(err => {
       res.status(400).json({msg: 'error: security not deleted', res: err});
     });
@@ -75,9 +75,12 @@ module.exports = {
       where: {userId: req.params.userId},
       include: [{
         model: db.position,
-        include: [{
-          model: db.security,
-        }]
+        include: [
+          {model: db.security},
+          {model: db.lowPrice},
+          {model: db.highPrice},
+          {model: db.trailingStop},
+        ],
       }],
     }).then(data => {
       res.status(200).json({
@@ -92,7 +95,7 @@ module.exports = {
     db.portfolio.destroy({
       where: {id: req.params.id},
     }).then(data => {
-      res.status(200).json({msg: `success-deleted: ${data} portfolio`, res: data});
+      res.status(200).json({msg: 'success-deleted: portfolio', res: data});
     }).catch(err => {
       res.status(400).json({msg: 'error: portfolio not deleted', res: err});
     });
@@ -117,9 +120,9 @@ module.exports = {
     db.position.destroy({
       where: {id: req.params.id}
     }).then(data => {
-      res.status(200).json({msg:'success-deleted: position'});
+      res.status(200).json({msg:'success-deleted: position', res: data});
     }).catch(err => {
-      res.status(400).json({msg:'error: position not deleted'});
+      res.status(400).json({msg:'error: position not deleted', res: err});
     });
   },
 };

@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'trailingStop',
   });
   trailingStop.associate = function(models) {
-    trailingStop.belongsTo(models.position, {foreignKey: 'positionId'});
   };
   return trailingStop;
 };
