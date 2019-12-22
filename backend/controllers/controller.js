@@ -58,7 +58,7 @@ module.exports = {
   createPortfolio: (req, res) => {
     db.portfolio.create({
       name: req.body.name,
-      userId: req.params.userId,
+      userId: req.body.userId,
     }).then(data => {
       res.status(201).json({msg:'success-created: portfolio', res: data});
     }).catch(err => {
@@ -68,7 +68,7 @@ module.exports = {
   },
   retrieveUserPortfolios: (req, res) => {
     db.portfolio.findAll({
-      where: {userId: req.params.userId},
+      where: {userId: req.body.userId},
       include: [{
         model: db.position,
         include: [
@@ -90,7 +90,7 @@ module.exports = {
       return res.status(400).json({msg:'error: userId cannot be changed'});
     }
     db.portfolio.update(req.body, {
-      where: {id: req.params.id},
+      where: {id: req.params.id,}, // userId: req.userContext.userinfo.id
       returning: true,
     }).then(data => {
       res.status(200).json({msg: 'success-updated: portfolio', res: data[1]});
@@ -114,8 +114,8 @@ module.exports = {
     db.position.create({
       openedDate: req.body.openedDate,
       cost: req.body.cost,
-      portfolioId: req.params.portfolioId,
-      securityId: req.params.securityId,
+      portfolioId: req.body.portfolioId,
+      securityId: req.body.securityId,
     }).then(data => {
         res.status(201).json({msg:'success-created: position', res: data});
       }).catch(err => {
@@ -124,7 +124,7 @@ module.exports = {
   },
   retrievePosition: (req,res) => {
     db.position.findByPk(
-      req.params.id,
+      req.body.id,
       {include:[
           {model: db.security},
           {model: db.lowPrice},
@@ -164,7 +164,7 @@ module.exports = {
   createHighPrice: (req,res) => {
     db.highPrice.create({
       price: req.body.price,
-      positionId: req.params.positionId,
+      positionId: req.body.positionId,
     }).then(data => {
       res.status(200).json({msg:`success-created: highPrice for portfolio with ID: ${data.positionId}`, res: data});
     }).catch(err => {
@@ -195,7 +195,7 @@ module.exports = {
   createLowPrice: (req, res) => {
     db.lowPrice.create({
       price: req.body.price,
-      positionId: req.params.positionId,
+      positionId: req.body.positionId,
     }).then(data => {
       res.status(200).json({msg: 'success-created: lowPrice', res: data});
     }).catch(err => {
@@ -226,7 +226,7 @@ module.exports = {
   createTrailingStop: (req, res) => {
     db.trailingStop.create({
       percent: req.body.percent,
-      positionId: req.params.positionId,
+      positionId: req.body.positionId,
     }).then(data => {
       res.status(200).json({msg: 'success-created: trailingStop', res: data});
     }).catch(err => {

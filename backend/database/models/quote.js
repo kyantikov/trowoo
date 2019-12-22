@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const quote = sequelize.define('quote', {
-    quoteDate: DataTypes.DATE,
+    quoteDate: DataTypes.DATEONLY,
     open: DataTypes.DECIMAL,
     high: DataTypes.DECIMAL,
     low: DataTypes.DECIMAL,
