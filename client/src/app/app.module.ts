@@ -21,7 +21,7 @@ import { AuthRoutingModule } from "./auth/auth-routing.module";
     OktaAuthModule.initAuth({
       issuer: 'https://dev-793026.okta.com/oauth2/default',
       redirectUri: 'http://localhost:4200/implicit/callback',
-      clientId: '0oa26b0fwuZgO5hOB357'
+      clientId: '0oa26b0fwuZgO5hOB357',
     }),
   ],
   providers: [],

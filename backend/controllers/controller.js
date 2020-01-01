@@ -1,21 +1,18 @@
-const db = require('../database/models/index');
 const Sequelize = require('sequelize');
+const db = require('../services/dbService');
 
 const helper = require('./helper');
 
 // TODO: [validation] -- when creating a trailing stop for a position, check if that position has an opening date and cost
 // ^^^^ also for high/lowPrice
+// TODO: place db querying logic into singular service file in order to decouple that logic from requests
+// TODO: price-to-book ratios?
 
 module.exports = {
   // security logic
   createSecurity: (req,res) => {
-    db.security.findOrCreate({
-      where: {ticker: req.body.ticker},
-      defaults: {
-        name: req.body.name,
-        ticker: req.body.ticker
-      }
-    }).then(data => {
+    let body = req.body;
+    db.createSecurity(body.name, body.ticker).then(data => {
       if(data[1] === false){
         res.status(200).json({msg:'success-found: security', res: data})
       }
@@ -25,7 +22,7 @@ module.exports = {
     });
   },
   retrieveAllSecurities: (req,res) => {
-    db.security.findAll().then(data => {
+     db.retrieveAllSecurities().then(data => {
       res.status(200).json({msg: 'success-found: all securities', res: data});
     }).catch(err => {
       res.status(400).json({msg: 'error: securities not found', res: err});
@@ -34,10 +31,9 @@ module.exports = {
   // regular users will likely be unable to access updating/deleting securities
   // should update,delete be done with ticker instead?
   updateSecurity: (req, res) => {
-    db.security.update(req.body, {
-      where: {id: req.params.id},
-      returning: true,
-    }).then(data => {
+    let body = req.body;
+    let params = req.params;
+    db.updateSecurity(body, params.id).then(data => {
       res.status(200).json({msg:'success-updated: security', res: data[1]});
     }).catch(err => {
       res.status(400).json({msg: 'error: security not updated', res: err});
@@ -45,9 +41,8 @@ module.exports = {
   },
   // security cannot be deleted if a position is open on that security
   deleteSecurity: (req, res) => {
-    db.security.destroy({
-      where: {id: req.params.id}
-    }).then(data => {
+    let params = req.params;
+    db.deleteSecurity(params.id).then(data => {
       res.status(200).json({msg: 'success-deleted: security', res: data});
     }).catch(err => {
       res.status(400).json({msg: 'error: security not deleted', res: err});
