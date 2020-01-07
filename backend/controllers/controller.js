@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../services/dbService');
+const db = require('../services/db/dbService');
 
 const helper = require('./helper');
 
@@ -12,20 +12,22 @@ module.exports = {
   // security logic
   createSecurity: (req,res) => {
     let body = req.body;
+    console.log(req.body);
     db.createSecurity(body.name, body.ticker).then(data => {
       if(data[1] === false){
-        res.status(200).json({msg:'success-found: security', res: data})
+        res.status(200).json(data)
       }
-      res.status(201).json({msg:'success-created: security', res: data});
+      res.status(201).json(data);
     }).catch(err => {
-      res.status(400).json({msg: 'error: security not created', res: err});
+      res.status(400).json(err);
     });
   },
   retrieveAllSecurities: (req,res) => {
      db.retrieveAllSecurities().then(data => {
-      res.status(200).json({msg: 'success-found: all securities', res: data});
+       console.log(data);
+      res.status(200).json(data);
     }).catch(err => {
-      res.status(400).json({msg: 'error: securities not found', res: err});
+      res.status(400).json(err);
     });
   },
   // regular users will likely be unable to access updating/deleting securities

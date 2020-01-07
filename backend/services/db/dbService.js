@@ -1,4 +1,4 @@
-const db = require('../database/models/index');
+const db = require('../../database/models');
 
 module.exports = {
   createSecurity: (name, ticker) => {
@@ -7,7 +7,7 @@ module.exports = {
       defaults: {
         name: name,
         ticker: ticker,
-      }
+      },
     });
   },
   retrieveAllSecurities: () => {
