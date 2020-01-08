@@ -16,7 +16,8 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.url, config);
   // sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-// db queries output only
+
+// models queries output only arrays of objects without extra sequelize query information
 sequelize.options.query.raw = true;
 
 fs

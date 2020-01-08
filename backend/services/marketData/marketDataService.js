@@ -9,7 +9,7 @@ const retrieveMarketData = async () => {
       console.log(ticker);
     });
   const queueRequest = (ticker) => queueRequest$.next(ticker);
-  const securities = await db.retrieveAllSecurities();
+  const securities = await db.securityService.retrieveAllSecurities();
   for(let security of securities) {
     queueRequest(security.ticker);
   }
