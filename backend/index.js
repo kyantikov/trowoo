@@ -12,7 +12,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(authMiddleware);
+// app.use(authMiddleware); // use this for development
 
 require('./routes/routes')(app);
 
@@ -22,7 +22,7 @@ db.sequelize.sync().then(() => {
   })
 });
 
-schedule.scheduleJob('* * * * *', function(){
-  // console.log('The answer to life, the universe, and everything!');
-  marketDataService.retrieveMarketData();
-});
+// schedule.scheduleJob('* * * * *', function(){
+//   // console.log('The answer to life, the universe, and everything!');
+//   marketDataService.retrieveMarketData();
+// });

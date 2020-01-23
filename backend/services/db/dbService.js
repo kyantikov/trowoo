@@ -3,7 +3,7 @@ module.exports = {
   portfolioService: require('./portfolioService'),
   positionService: require('./positionService'),
   quoteService: '',
-  trailingStopService: '',
-  highPriceService: '',
-  lowPriceService: '',
+  trailingStopService: require('./trailingStopService'),
+  highPriceService: require('./highPriceService'),
+  lowPriceService: require('./lowPriceService'),
 };

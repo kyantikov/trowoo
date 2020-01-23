@@ -14,6 +14,7 @@ module.exports = {
     });
   },
   retrieveUserPortfolios: (userId) => {
+    console.log(userId);
     return models.portfolio.findAll({
       where: {userId: userId},
       include: [{

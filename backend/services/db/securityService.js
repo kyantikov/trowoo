@@ -10,14 +10,14 @@ module.exports = {
       },
     });
   },
-  retrieveAllSecurities: () => {
-    return models.security.findAll()
-  },
   updateSecurity: (body, securityId) => {
     return models.security.update(body, {
       where: {id: securityId},
       returning: true,
     });
+  },
+  retrieveAllSecurities: () => {
+    return models.security.findAll()
   },
   deleteSecurity: (securityId) => {
     return models.security.destroy({

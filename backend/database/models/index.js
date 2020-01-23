@@ -17,8 +17,11 @@ if (config.use_env_variable) {
   // sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-// models queries output only arrays of objects without extra sequelize query information
-sequelize.options.query.raw = true;
+/* !!
+   doing global {query: {raw: true}} (below) results in 'result.get is not a function error' when querying
+   with includes and nested includes
+   !! */
+// sequelize.options.query.raw = true;   // models queries output only arrays of objects without extra sequelize query information
 
 fs
   .readdirSync(__dirname)
