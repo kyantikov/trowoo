@@ -1,2 +1,6 @@
-# webstorm file
+# webstorm config
 .idea/
+
+
+# vscode config 
+.vscode/
