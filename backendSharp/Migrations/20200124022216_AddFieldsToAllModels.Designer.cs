@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using backendSharp;
@@ -9,9 +10,10 @@ using backendSharp;
 namespace backendSharp.Migrations
 {
     [DbContext(typeof(trowoo_dev_db_sharpContext))]
-    partial class trowoo_dev_db_sharpContextModelSnapshot : ModelSnapshot
+    [Migration("20200124022216_AddFieldsToAllModels")]
+    partial class AddFieldsToAllModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
