@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+
 namespace backendSharp
 {
     public class Startup
@@ -25,6 +26,7 @@ namespace backendSharp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<trowoo_dev_db_sharpContext>();
             services.AddControllers();
         }
 

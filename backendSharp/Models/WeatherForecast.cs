@@ -1,6 +1,6 @@
 using System;
 
-namespace backendSharp
+namespace backendSharp.Models
 {
     public class WeatherForecast
     {
