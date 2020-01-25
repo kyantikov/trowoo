@@ -9,5 +9,6 @@ namespace backendSharp.Models
         public long Id {get; set;}
         public string Ticker {get; set;}
         public string Name {get; set;}
+        public List<Quote> Quotes {get; set;}
     }
 }

@@ -15,5 +15,6 @@ namespace backendSharp.Models
         public int Volume {get; set;}
         public decimal DividendAmount {get; set;}
         public decimal SplitCoefficient {get; set;}
+        public Security Security {get; set;}
     }
 }

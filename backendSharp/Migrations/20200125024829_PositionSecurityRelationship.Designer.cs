@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using backendSharp;
@@ -9,9 +10,10 @@ using backendSharp;
 namespace backendSharp.Migrations
 {
     [DbContext(typeof(trowoo_dev_db_sharpContext))]
-    partial class trowoo_dev_db_sharpContextModelSnapshot : ModelSnapshot
+    [Migration("20200125024829_PositionSecurityRelationship")]
+    partial class PositionSecurityRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,15 +28,10 @@ namespace backendSharp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("PositionId")
-                        .HasColumnType("integer");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PositionId");
 
                     b.ToTable("HighPrice");
                 });
@@ -46,15 +43,10 @@ namespace backendSharp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("PositionId")
-                        .HasColumnType("integer");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PositionId");
 
                     b.ToTable("LowPrice");
                 });
@@ -90,15 +82,10 @@ namespace backendSharp.Migrations
                     b.Property<DateTime>("OpenedDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int?>("PortfolioId")
-                        .HasColumnType("integer");
-
                     b.Property<long?>("SecurityId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PortfolioId");
 
                     b.HasIndex("SecurityId");
 
@@ -133,9 +120,6 @@ namespace backendSharp.Migrations
                     b.Property<DateTime>("QuoteDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long?>("SecurityId")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("SplitCoefficient")
                         .HasColumnType("numeric");
 
@@ -143,8 +127,6 @@ namespace backendSharp.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SecurityId");
 
                     b.ToTable("Quote");
                 });
@@ -177,53 +159,16 @@ namespace backendSharp.Migrations
                     b.Property<decimal>("Percent")
                         .HasColumnType("numeric");
 
-                    b.Property<int?>("PositionId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PositionId");
 
                     b.ToTable("TrailingStop");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.HighPrice", b =>
-                {
-                    b.HasOne("backendSharp.Models.Position", "Position")
-                        .WithMany()
-                        .HasForeignKey("PositionId");
-                });
-
-            modelBuilder.Entity("backendSharp.Models.LowPrice", b =>
-                {
-                    b.HasOne("backendSharp.Models.Position", "Position")
-                        .WithMany()
-                        .HasForeignKey("PositionId");
-                });
-
             modelBuilder.Entity("backendSharp.Models.Position", b =>
                 {
-                    b.HasOne("backendSharp.Models.Portfolio", null)
-                        .WithMany("Positions")
-                        .HasForeignKey("PortfolioId");
-
                     b.HasOne("backendSharp.Models.Security", "Security")
                         .WithMany()
                         .HasForeignKey("SecurityId");
-                });
-
-            modelBuilder.Entity("backendSharp.Models.Quote", b =>
-                {
-                    b.HasOne("backendSharp.Models.Security", "Security")
-                        .WithMany("Quotes")
-                        .HasForeignKey("SecurityId");
-                });
-
-            modelBuilder.Entity("backendSharp.Models.TrailingStop", b =>
-                {
-                    b.HasOne("backendSharp.Models.Position", "Position")
-                        .WithMany()
-                        .HasForeignKey("PositionId");
                 });
 #pragma warning restore 612, 618
         }

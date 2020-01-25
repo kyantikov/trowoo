@@ -8,9 +8,6 @@ namespace backendSharp.Controllers
 {
     public class SecurityController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }
