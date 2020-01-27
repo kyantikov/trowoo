@@ -1,24 +1,24 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using backendSharp.Models;
+using Trowoo.Models;
 
-namespace backendSharp
+namespace Trowoo
 {
-    public partial class trowoo_dev_db_sharpContext : DbContext
+    public partial class TrowooDbContext : DbContext
     {
-        public DbSet<Security> Security {get; set;}
-        public DbSet<Portfolio> Portfolio {get;set;}
-        public DbSet<Position> Position {get; set;}
-        public DbSet<Quote> Quote {get;set;}
-        public DbSet<LowPrice> LowPrice {get;set;}
-        public DbSet<HighPrice> HighPrice {get;set;}
-        public DbSet<TrailingStop> TrailingStop {get;set;}
-        public trowoo_dev_db_sharpContext()
+        public DbSet<Security> Securities {get; set;}
+        public DbSet<Portfolio> Portfolios {get;set;}
+        public DbSet<Position> Positions {get; set;}
+        public DbSet<Quote> Quotes {get;set;}
+        public DbSet<LowPrice> LowPrices {get;set;}
+        public DbSet<HighPrice> HighPrices {get;set;}
+        public DbSet<TrailingStop> TrailingStops {get;set;}
+        public TrowooDbContext()
         {
         }
 
-        public trowoo_dev_db_sharpContext(DbContextOptions<trowoo_dev_db_sharpContext> options)
+        public TrowooDbContext(DbContextOptions<TrowooDbContext> options)
             : base(options)
         {
         }

@@ -10,8 +10,8 @@ using Trowoo;
 namespace Trowoo.Migrations
 {
     [DbContext(typeof(TrowooDbContext))]
-    [Migration("20200125060501_AllRelationships")]
-    partial class AllRelationships
+    [Migration("20200126200538_UpdateTableNames")]
+    partial class UpdateTableNames
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Trowoo.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("backendSharp.Models.HighPrice", b =>
+            modelBuilder.Entity("Trowoo.Models.HighPrice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,10 +38,10 @@ namespace Trowoo.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("HighPrice");
+                    b.ToTable("HighPrices");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.LowPrice", b =>
+            modelBuilder.Entity("Trowoo.Models.LowPrice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,10 +58,10 @@ namespace Trowoo.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("LowPrice");
+                    b.ToTable("LowPrices");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.Portfolio", b =>
+            modelBuilder.Entity("Trowoo.Models.Portfolio", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,10 +76,10 @@ namespace Trowoo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Portfolio");
+                    b.ToTable("Portfolios");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.Position", b =>
+            modelBuilder.Entity("Trowoo.Models.Position", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,10 +104,10 @@ namespace Trowoo.Migrations
 
                     b.HasIndex("SecurityId");
 
-                    b.ToTable("Position");
+                    b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.Quote", b =>
+            modelBuilder.Entity("Trowoo.Models.Quote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -148,10 +148,10 @@ namespace Trowoo.Migrations
 
                     b.HasIndex("SecurityId");
 
-                    b.ToTable("Quote");
+                    b.ToTable("Quotes");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.Security", b =>
+            modelBuilder.Entity("Trowoo.Models.Security", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -166,10 +166,10 @@ namespace Trowoo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Security");
+                    b.ToTable("Securities");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.TrailingStop", b =>
+            modelBuilder.Entity("Trowoo.Models.TrailingStop", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -186,44 +186,44 @@ namespace Trowoo.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("TrailingStop");
+                    b.ToTable("TrailingStops");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.HighPrice", b =>
+            modelBuilder.Entity("Trowoo.Models.HighPrice", b =>
                 {
-                    b.HasOne("backendSharp.Models.Position", "Position")
+                    b.HasOne("Trowoo.Models.Position", "Position")
                         .WithMany()
                         .HasForeignKey("PositionId");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.LowPrice", b =>
+            modelBuilder.Entity("Trowoo.Models.LowPrice", b =>
                 {
-                    b.HasOne("backendSharp.Models.Position", "Position")
+                    b.HasOne("Trowoo.Models.Position", "Position")
                         .WithMany()
                         .HasForeignKey("PositionId");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.Position", b =>
+            modelBuilder.Entity("Trowoo.Models.Position", b =>
                 {
-                    b.HasOne("backendSharp.Models.Portfolio", null)
+                    b.HasOne("Trowoo.Models.Portfolio", null)
                         .WithMany("Positions")
                         .HasForeignKey("PortfolioId");
 
-                    b.HasOne("backendSharp.Models.Security", "Security")
+                    b.HasOne("Trowoo.Models.Security", "Security")
                         .WithMany()
                         .HasForeignKey("SecurityId");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.Quote", b =>
+            modelBuilder.Entity("Trowoo.Models.Quote", b =>
                 {
-                    b.HasOne("backendSharp.Models.Security", "Security")
+                    b.HasOne("Trowoo.Models.Security", "Security")
                         .WithMany("Quotes")
                         .HasForeignKey("SecurityId");
                 });
 
-            modelBuilder.Entity("backendSharp.Models.TrailingStop", b =>
+            modelBuilder.Entity("Trowoo.Models.TrailingStop", b =>
                 {
-                    b.HasOne("backendSharp.Models.Position", "Position")
+                    b.HasOne("Trowoo.Models.Position", "Position")
                         .WithMany()
                         .HasForeignKey("PositionId");
                 });

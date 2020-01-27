@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace backendSharp.Migrations
+namespace Trowoo.Migrations
 {
     public partial class AddFieldsToAllModels : Migration
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace backendSharp.Models
+namespace Trowoo.Models
 {
     public class WeatherForecast
     {

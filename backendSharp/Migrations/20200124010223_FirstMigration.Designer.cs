@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using backendSharp;
+using Trowoo;
 
-namespace backendSharp.Migrations
+namespace Trowoo.Migrations
 {
-    [DbContext(typeof(trowoo_dev_db_sharpContext))]
+    [DbContext(typeof(TrowooDbContext))]
     [Migration("20200124010223_FirstMigration")]
     partial class FirstMigration
     {
