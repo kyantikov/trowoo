@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -21,12 +20,10 @@ namespace Trowoo.Controllers
             SecurityService = securityService;
             Logger = logger;
         }
-
-        [HttpPost]
-        public ActionResult<Security> FindOrCreate([FromBody] Security security)
+        [HttpGet]
+        public ActionResult<List<Security>> GetAll()
         {
-            security = SecurityService.FindOrCreate(security);
-            return CreatedAtAction(nameof(GetById), new {id = security.Id}, security);
+            return SecurityService.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -40,10 +37,12 @@ namespace Trowoo.Controllers
             return Ok(security);
         }
         
-        [HttpGet]
-        public ActionResult<List<Security>> GetAll()
+
+        [HttpPost]
+        public ActionResult<Security> FindOrCreate([FromBody] Security security)
         {
-            return SecurityService.GetAll();
+            security = SecurityService.FindOrCreate(security);
+            return CreatedAtAction(nameof(GetById), new {id = security.Id}, security);
         }
 
         [HttpPut]
