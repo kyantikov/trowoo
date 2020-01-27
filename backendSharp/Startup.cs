@@ -30,6 +30,7 @@ namespace Trowoo
         {
             services.AddDbContext<TrowooDbContext>();
             services.AddScoped<SecurityService>();
+            services.AddScoped<PortfolioService>();
             services.AddControllers();
         }
 
