@@ -9,10 +9,13 @@ using Trowoo.Services;
 namespace Trowoo.Controllers
 {
     /// <summary>
-    /// <para>API controller class with ROUTE: '/portfolio' which inherits ControllerBase class,</para>
-    /// <para>uses PortfolioService to process/recieve data.</para>
-    /// <para>All methods return an HTTP Response.</para>
+    /// API controller class which inherits ControllerBase class, uses PortfolioService to process/recieve data.
+    /// ROUTE: '/portfolio'
+    /// All methods return an HTTP Response.
     /// </summary>
+    /// <remarks>
+    /// <para>This class contains methods which are similarlly named in PortfolioService.</para>
+    /// </remarks>
     [ApiController]
     [Route("portfolio")]
     public class PortfolioController : ControllerBase
@@ -23,8 +26,8 @@ namespace Trowoo.Controllers
         /// <summary>
         /// Constructor method injects PortfolioService and Logger into the class upon instantiation.
         /// </summary>
-        /// <param name="portfolioService">PortfolioService Dependency Injection</param>
-        /// <param name="logger">Logger Dependency Injection</param>
+        /// <param name="portfolioService">PortfolioService Dependency Injection.</param>
+        /// <param name="logger">Logger Dependency Injection.</param>
         public PortfolioController(PortfolioService portfolioService, ILogger<PortfolioController> logger)
         {
             PortfolioService = portfolioService;
@@ -32,14 +35,14 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// Retrieves portfolio by id from URL.
+        /// GET request to retrieve Security by id.
         /// </summary>
-        /// <param name="id">Portfolio Id.</param>
+        /// <param name="id">Portfolio Id. An integer.</param>
         /// <returns>
-        /// <para>Returns 200 if portfolio exists.</para>
-        /// <para>Returns 404 if portfolio does not exist.</para>
+        /// <para>Returns 200 if Portfolio exists. Portfolio object returned.</para>
+        /// <para>Returns 404 if Portfolio does not exist.</para>
         /// </returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public ActionResult<Portfolio> GetById(int id)
         {
             var portfolio = PortfolioService.GetById(id);
@@ -51,10 +54,10 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// Retrieves all portfolios for user by userId FromBody.
+        /// GET request to retrieve all Securities for a user.
         /// </summary>
-        /// <param name="userId">User Id that is passed through the body.</param>
-        /// <returns>List of portfolios for a user.</returns>
+        /// <param name="userId">User Id; passed through body.</param>
+        /// <returns>List of Portfolios for a user.</returns>
         [HttpGet]
         public ActionResult<List<Portfolio>> GetUserPortfolios([FromBody] string userId)
         {
@@ -62,12 +65,12 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// Creates a new portfolio for a user.
+        /// POST request to create Portfolio for a user.
         /// </summary>
-        /// <param name="portfolio">Portfolio object to be added.</param>
+        /// <param name="portfolio">Portfolio object.</param>
         /// <returns>
         /// <para>Returns 201 if successfully validated, created, and saved.</para>
-        /// <para>Returns 404 if validation fails and entity is not created and saved. </para>
+        /// <para>Returns 404 if validation fails and Portfolio is not created and saved. </para>
         /// </returns>
         [HttpPost]
         public ActionResult<Portfolio> Create([FromBody] Portfolio portfolio)
@@ -77,16 +80,16 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// Updates ONLY the name of a portfolio.
+        /// PUT request to update ONLY name of existing Portfolio.
         /// </summary>
-        /// <param name="id">Portfolio Id: route parameter</param>
-        /// <param name="name">New portfolio name: request body </param>
+        /// <param name="id">Portfolio Id. An integer.</param>
+        /// <param name="name">Updated Portfolio name. A string. </param>
         /// <returns>
-        /// <para>Returns 200 if the portfolio was successfully updated.</para>
-        /// <para>Returns 404 if a portfolio with specified does not exist.</para>
-        /// <para>Returns 404 if updating the entity to new values fails the model validation.</para>
+        /// <para>Returns 200 if the Portfolio was successfully validated and updated. Updated Portfolio object returned.</para>
+        /// <para>Returns 404 if a Portfolio with specified id does not exist.</para>
+        /// <para>Returns 404 if updating the Portfolio to new values fails the model validation.</para>
         /// </returns>
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public ActionResult<Portfolio> Update([FromRoute] int id ,[FromBody] string name)
         {
             var portfolio = PortfolioService.Update(id, name);
@@ -98,15 +101,15 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// Delete's a portfolio.
+        /// DELETE request to delete a portfolio.
         /// </summary>
-        /// <param name="id">Portfolio Id.</param>
+        /// <param name="id">Portfolio Id. An integer.</param>
         /// <returns>
-        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to delete a portfolio an id that does not exist.</exception>
-        /// <para>Returns 200 if the entity was successfully deleted.</para>
-        /// <para>Returns 404 if the entity with specified id does not exist in the database.</para>
+        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to delete a Portfolio an id that does not exist.</exception>
+        /// <para>Returns 200 if the Portfolio was successfully deleted.</para>
+        /// <para>Returns 404 if the Portfolio with specified id does not exist in the database.</para>
         /// </returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
             try

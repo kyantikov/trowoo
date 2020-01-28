@@ -7,27 +7,30 @@ using Microsoft.EntityFrameworkCore;
 namespace Trowoo.Services
 {
     /// <summary>
-    /// The PortfolioService class is a service layer class which contains 
-    /// all methods necessary to create, read update or delete a portfolio for a user.
+    /// The PortfolioService contains all methods necessary to create, read update or delete a portfolio for a user.
     /// </summary>
+    /// <remarks>
+    /// <para>This class has the following methods:</para>
+    /// <para>Create, GetUserPortfolios, Update, Delete, GetById</para>
+    /// </remarks>
     public class PortfolioService
     {
         private TrowooDbContext TrowooDbContext;
 
         /// <summary>
-        /// The constructor method of this class injects the dependency of type TrowooDbContext into the class upon instantiation.
+        /// Constructor method injects the dependency of type TrowooDbContext into the class upon instantiation.
         /// </summary>
-        /// <param name="trowooDbContext">Database Context dependecy injection</param>
+        /// <param name="trowooDbContext">Database Context dependecy injection.</param>
         public PortfolioService(TrowooDbContext trowooDbContext)
         {
             TrowooDbContext = trowooDbContext;
         }
 
         /// <summary>
-        /// Creates a portfolio based on a portfolio object passed through this method.
+        /// Creates a Portfolio for a user.
         /// </summary>
         /// <param name="portfolio">Portfolio object.</param>
-        /// <returns>Returns the Portfolio object which was originally passed as an argument.</returns>
+        /// <returns>Portfolio object originally passed as an argument.</returns>
         public Portfolio Create(Portfolio portfolio)
         {
             TrowooDbContext.Portfolios.Add(portfolio);
@@ -36,16 +39,7 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Queries the database for a Portfolio with the specified id.
-        /// </summary>
-        /// <param name="id">Portfolio id.</param>
-        /// <returns>Portfolio object.</returns>
-        public Portfolio GetById(int id)
-        {
-            return TrowooDbContext.Portfolios.Find(id);
-        }
-        /// <summary>
-        /// This method retrieves all portfolios for a specified userId.
+        /// This method retrieves all Portfolios for a specified userId.
         /// </summary>
         /// <param name="userId">User Id.</param>
         /// <returns>List of Portfolios.</returns>
@@ -54,10 +48,10 @@ namespace Trowoo.Services
             return TrowooDbContext.Portfolios.Where(p => p.UserId == userId).ToList();
         }
         /// <summary>
-        /// Updates a portfolio's name for a specified id.
+        /// Updates a Portfolio's name for a specified id.
         /// </summary>
         /// <param name="id">Portfolio Id.</param>
-        /// <param name="name">Name to be changed to.</param>
+        /// <param name="name">Updated name.</param>
         /// <returns>Updated Portfolio object.</returns>
         public Portfolio Update(int id, string name)
         {
@@ -72,7 +66,7 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Deletes a portfolio for a specified id.
+        /// Deletes a Portfolio for a specified id.
         /// </summary>
         /// <param name="id">Portfolio Id.</param>
         /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to
@@ -88,6 +82,16 @@ namespace Trowoo.Services
             {
                 throw new EntityDoesNotExistException($"Portfolio with id: '{id}' does not exist", exception);
             }
+        }
+
+        /// <summary>
+        /// Queries the database for a Portfolio with the specified id.
+        /// </summary>
+        /// <param name="id">Portfolio id.</param>
+        /// <returns>Portfolio object.</returns>
+        public Portfolio GetById(int id)
+        {
+            return TrowooDbContext.Portfolios.Find(id);
         }
     }
 }
