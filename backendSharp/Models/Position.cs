@@ -12,5 +12,8 @@ namespace Trowoo.Models
         [Required]
         public decimal Cost {get; set;}
         public Security Security {get; set;}
+        public TrailingStop TrailingStop {get; set;}
+        public LowPrice LowPrice {get; set;}
+        public HighPrice HighPrice {get; set;}
     }
 }

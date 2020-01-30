@@ -10,7 +10,7 @@ using Trowoo;
 namespace Trowoo.Migrations
 {
     [DbContext(typeof(TrowooDbContext))]
-    [Migration("20200130021157_AddIndicatorReferencesToPositionModel")]
+    [Migration("20200130023223_AddIndicatorReferencesToPositionModel")]
     partial class AddIndicatorReferencesToPositionModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
