@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Trowoo;
@@ -9,9 +10,10 @@ using Trowoo;
 namespace Trowoo.Migrations
 {
     [DbContext(typeof(TrowooDbContext))]
-    partial class trowoo_dev_db_sharpContextModelSnapshot : ModelSnapshot
+    [Migration("20200130021157_AddIndicatorReferencesToPositionModel")]
+    partial class AddIndicatorReferencesToPositionModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
