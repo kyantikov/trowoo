@@ -26,6 +26,26 @@ namespace Trowoo.Services
         }
 
         /// <summary>
+        /// Retrieves Security with specified id.
+        /// </summary>
+        /// <param name="id">Security Id. An integer.</param>
+        /// <returns>Security object.</returns>
+        public Security GetById(int id)
+        {
+            return TrowooDbContext.Securities.Find(id);
+        }
+
+        /// <summary>
+        /// Retrieves Security with specified ticker.
+        /// </summary>
+        /// <param name="ticker">Security Ticker. A string.</param>
+        /// <returns>Security object.</returns>
+        public Security GetByTicker(string ticker)
+        {
+            return TrowooDbContext.Securities.Where(s => s.Ticker == ticker).FirstOrDefault();
+        }
+
+        /// <summary>
         /// Creates Security in DB if !exists.
         /// </summary>
         /// <param name="security">Security object.</param>
@@ -88,26 +108,6 @@ namespace Trowoo.Services
             {
                 throw new EntityDoesNotExistException($"Security with id: '{id}' does not exist", exception);
             }
-        }
-
-        /// <summary>
-        /// Retrieves Security with specified id.
-        /// </summary>
-        /// <param name="id">Security Id. An integer.</param>
-        /// <returns>Security object.</returns>
-        public Security GetById(int id)
-        {
-            return TrowooDbContext.Securities.Find(id);
-        }
-
-        /// <summary>
-        /// Retrieves Security with specified ticker.
-        /// </summary>
-        /// <param name="ticker">Security Ticker. A string.</param>
-        /// <returns>Security object.</returns>
-        public Security GetByTicker(string ticker)
-        {
-            return TrowooDbContext.Securities.Where(s => s.Ticker == ticker).FirstOrDefault();
         }
     }
 }
