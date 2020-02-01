@@ -26,7 +26,7 @@ namespace Trowoo.Controllers
         /// <summary>
         /// Constructor method injects PortfolioService and Logger into the class upon instantiation.
         /// </summary>
-        /// <param name="portfolioService">PortfolioService Dependency Injection.</param>
+        /// <param name="portfolioService">PortfolioService class Dependency Injection.</param>
         /// <param name="logger">Logger Dependency Injection.</param>
         public PortfolioController(PortfolioService portfolioService, ILogger<PortfolioController> logger)
         {
@@ -35,7 +35,7 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// GET request to retrieve Security by id.
+        /// GET request to retrieve Portfolio by id.
         /// </summary>
         /// <param name="id">Portfolio Id. An integer.</param>
         /// <returns>
@@ -69,14 +69,14 @@ namespace Trowoo.Controllers
         /// </summary>
         /// <param name="portfolio">Portfolio object.</param>
         /// <returns>
-        /// <para>Returns 201 if successfully validated, created, and saved.</para>
+        /// <para>Returns 201 if Portfolio is successfully validated, created, and saved.</para>
         /// <para>Returns 404 if validation fails and Portfolio is not created and saved. </para>
         /// </returns>
         [HttpPost]
         public ActionResult<Portfolio> Create([FromBody] Portfolio portfolio)
         {
             portfolio = PortfolioService.Create(portfolio);
-            return CreatedAtAction(nameof(GetById), new {id = portfolio.Id, userId = portfolio.UserId}, portfolio);
+            return CreatedAtAction(nameof(GetById), new {id = portfolio.Id}, portfolio);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Trowoo.Controllers
         /// <returns>
         /// <para>Returns 200 if the Portfolio was successfully validated and updated. Updated Portfolio object returned.</para>
         /// <para>Returns 404 if a Portfolio with specified id does not exist.</para>
-        /// <para>Returns 404 if updating the Portfolio to new values fails the model validation.</para>
+        /// <para>Returns 404 if updating the Portfolio to new values fails the model validations.</para>
         /// </returns>
         [HttpPut("{id:int}")]
         public ActionResult<Portfolio> Update([FromRoute] int id ,[FromBody] string name)
@@ -104,10 +104,12 @@ namespace Trowoo.Controllers
         /// DELETE request to delete a portfolio.
         /// </summary>
         /// <param name="id">Portfolio Id. An integer.</param>
+        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">
+        /// Throws when attempting to delete a Portfolio that does not exist.
+        /// </exception>
         /// <returns>
-        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to delete a Portfolio an id that does not exist.</exception>
         /// <para>Returns 200 if the Portfolio was successfully deleted.</para>
-        /// <para>Returns 404 if the Portfolio with specified id does not exist in the database.</para>
+        /// <para>Returns 404 if the Portfolio with specified id does not exist.</para>
         /// </returns>
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
