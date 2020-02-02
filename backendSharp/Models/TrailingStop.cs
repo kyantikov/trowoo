@@ -11,6 +11,7 @@ namespace Trowoo.Models
         public int Id {get; set;}
 
         [Required]
+        [Range(0,1)]
         public decimal Percent {get; set;}
 
         [Required]

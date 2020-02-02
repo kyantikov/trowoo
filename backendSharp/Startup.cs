@@ -32,6 +32,7 @@ namespace Trowoo
             services.AddScoped<SecurityService>();
             services.AddScoped<PortfolioService>();
             services.AddScoped<PositionService>();
+            services.AddScoped<TrailingStopService>();
             services.AddControllers();
         }
 
