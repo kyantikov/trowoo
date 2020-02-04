@@ -46,8 +46,8 @@ namespace Trowoo.Services
         /// <summary>
         /// Creates a TrailingStop for a Position.
         /// </summary>
-        /// <param name="trailingStop">TrailingStop object.</param>
-        /// <returns>TrailingStop object.</returns>
+        /// <param name="trailingStop">TrailingStop object to create.</param>
+        /// <returns>Newly created TrailingStop object.</returns>
         public TrailingStop Create(TrailingStop trailingStop)
         {
             TrowooDbContext.Add(trailingStop);
@@ -60,7 +60,7 @@ namespace Trowoo.Services
         /// </summary>
         /// <param name="id">TrailingStop id. An integer.</param>
         /// <param name="percent">Updated percent value. A decimal.</param>
-        /// <returns>TrailingStop object.</returns>
+        /// <returns>TrailingStop object with updated values.</returns>
         public TrailingStop Update(int id, decimal percent)
         {
             var trailingStop = GetById(id);
@@ -77,6 +77,9 @@ namespace Trowoo.Services
         /// Deletes a TrailingStop with the specified id.
         /// </summary>
         /// <param name="id">TrailingStop id. An integer.</param>
+        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">
+        /// Throws when attempting to delete a TrailingStop that does not exist.
+        /// </exception>
         public void Delete(int id)
         {
             try
