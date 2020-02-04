@@ -26,7 +26,7 @@ namespace Trowoo.Controllers
         /// <summary>
         /// Constructor method injects LowPriceService and Logger into the class upon instantiation.
         /// </summary>
-        /// <param name="trailingStopService">LowPriceService class Dependency Injection.</param>
+        /// <param name="lowPriceService">LowPriceService class Dependency Injection.</param>
         /// <param name="logger">Logger Dependency Injection.</param>
         public LowPriceController(LowPriceService lowPriceService, ILogger<LowPriceController> logger)
         {

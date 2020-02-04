@@ -70,7 +70,7 @@ namespace Trowoo.Services
         /// </summary>
         /// <param name="id">LowPrice Id. An integer.</param>
         /// <exception cref="Trowoo.Services.EntityDoesNotExistException">
-        /// Throws when attempting to delete a TrailingStop that does not exist.
+        /// Throws when attempting to delete a LowPrice that does not exist.
         /// </exception>
         public void Delete(int id)
         {
