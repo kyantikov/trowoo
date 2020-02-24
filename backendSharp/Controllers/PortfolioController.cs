@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Trowoo.Models;
 using Trowoo.Services;
@@ -16,6 +18,8 @@ namespace Trowoo.Controllers
     /// <remarks>
     /// <para>This class contains methods which are similarlly named in PortfolioService.</para>
     /// </remarks>
+    
+    [Authorize]
     [ApiController]
     [Route("portfolio")]
     public class PortfolioController : ControllerBase
@@ -59,9 +63,9 @@ namespace Trowoo.Controllers
         /// <param name="userId">User Id; passed through body.</param>
         /// <returns>List of Portfolios for a user.</returns>
         [HttpGet]
-        public ActionResult<List<Portfolio>> GetUserPortfolios([FromBody] string userId)
+        public ActionResult<List<Portfolio>> GetUserPortfolios()
         {
-            return PortfolioService.GetUserPortfolios(userId);
+            return PortfolioService.GetUserPortfolios(User.GetId());
         }
 
         /// <summary>
@@ -75,6 +79,10 @@ namespace Trowoo.Controllers
         [HttpPost]
         public ActionResult<Portfolio> Create([FromBody] Portfolio portfolio)
         {
+            if(portfolio.UserId != User.GetId())
+            {
+                return Conflict();
+            }
             portfolio = PortfolioService.Create(portfolio);
             return CreatedAtAction(nameof(GetById), new {id = portfolio.Id}, portfolio);
         }
@@ -92,7 +100,7 @@ namespace Trowoo.Controllers
         [HttpPut("{id:int}")]
         public ActionResult<Portfolio> Update([FromRoute] int id ,[FromBody] string name)
         {
-            var portfolio = PortfolioService.Update(id, name);
+            var portfolio = PortfolioService.Update(id, name, User.GetId());
             if(portfolio == null)
             {
                 return NotFound();
@@ -116,7 +124,7 @@ namespace Trowoo.Controllers
         {
             try
             {
-                PortfolioService.Delete(id);
+                PortfolioService.Delete(id, User.GetId());
                 return Ok();
             }
             catch(EntityDoesNotExistException exception)

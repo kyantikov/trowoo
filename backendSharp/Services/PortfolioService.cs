@@ -33,10 +33,9 @@ namespace Trowoo.Services
         /// <returns>
         /// <para>Returns Portfolio object with eagerly loaded related entities.</para>
         /// </returns>
-        public Portfolio GetById(int id)
+        public Portfolio GetByIdDetailed(int id)
         {
-            return (
-                TrowooDbContext.Portfolios.Where(p => p.Id == id)
+            return TrowooDbContext.Portfolios.Where(p => p.Id == id)
                 .Include(p => p.Positions)
                     .ThenInclude(p => p.Security)
                 .Include(p => p.Positions)
@@ -45,8 +44,17 @@ namespace Trowoo.Services
                     .ThenInclude(p => p.LowPrice)
                 .Include(p => p.Positions)
                     .ThenInclude(p => p.HighPrice)
-                .FirstOrDefault()
-            );
+                .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Portfolio GetById(int id)
+        {
+            return TrowooDbContext.Portfolios.Find(id);
         }
 
         /// <summary>
@@ -59,8 +67,7 @@ namespace Trowoo.Services
         /// </returns>
         public List<Portfolio> GetUserPortfolios(string userId)
         {
-            return (
-                TrowooDbContext.Portfolios.Where(p => p.UserId == userId)
+            return TrowooDbContext.Portfolios.Where(p => p.UserId == userId)
                 .Include(p => p.Positions)
                     .ThenInclude(p => p.Security)
                 .Include(p => p.Positions)
@@ -69,8 +76,7 @@ namespace Trowoo.Services
                     .ThenInclude(p => p.LowPrice)
                 .Include(p => p.Positions)
                     .ThenInclude(p => p.HighPrice)
-                .ToList()
-            );
+                .ToList();
         }
 
         /// <summary>
@@ -90,11 +96,12 @@ namespace Trowoo.Services
         /// </summary>
         /// <param name="id">Portfolio Id.</param>
         /// <param name="name">Updated name.</param>
+        /// <param>
         /// <returns>Updated Portfolio object.</returns>
-        public Portfolio Update(int id, string name)
+        public Portfolio Update(int id, string name, string userId)
         {
             var portfolio = GetById(id);
-            if(portfolio == null){
+            if(portfolio == null || portfolio.UserId != userId){
                 return null;
             }
             portfolio.Name = name;
@@ -109,17 +116,14 @@ namespace Trowoo.Services
         /// <param name="id">Portfolio Id.</param>
         /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to
         /// delete an entity in the database with <paramref name="id"/></exception>
-        public void Delete(int id)
+        public void Delete(int id, string userId)
         {
-            try
-            {
-                TrowooDbContext.Portfolios.Remove(new Portfolio{Id = id});
-                TrowooDbContext.SaveChanges();
+            var portfolio = GetById(id);
+            if(portfolio == null || portfolio.UserId != userId){
+                throw new EntityDoesNotExistException($"Portfolio with id: '{id}' does not exist");
             }
-            catch(DbUpdateConcurrencyException exception)
-            {
-                throw new EntityDoesNotExistException($"Portfolio with id: '{id}' does not exist", exception);
-            }
+            TrowooDbContext.Portfolios.Remove(portfolio);
+            TrowooDbContext.SaveChanges();
         }
     }
 }
