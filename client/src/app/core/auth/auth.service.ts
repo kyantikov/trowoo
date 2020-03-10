@@ -13,15 +13,15 @@ export class AuthService {
     baseUrl: 'https://dev-793026.okta.com',
     logo: '',
     registration: {
-      parseSchema: function(schema, onSuccess, onFailure) {
+      parseSchema: (schema, onSuccess, onFailure) => {
         // handle parseSchema callback
         onSuccess(schema);
       },
-      preSubmit: function (postData, onSuccess, onFailure) {
+      preSubmit: (postData, onSuccess, onFailure) => {
         // handle preSubmit callback
         onSuccess(postData);
       },
-      postSubmit: function (response, onSuccess, onFailure) {
+      postSubmit: (response, onSuccess, onFailure) => {
         // handle postsubmit callback
         onSuccess(response);
       }

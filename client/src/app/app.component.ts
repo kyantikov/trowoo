@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { OktaAuthService } from "@okta/okta-angular";
+import { OktaAuthService } from '@okta/okta-angular';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'client';
   isAuthenticated: boolean;
 
-  constructor(public oktaAuth:OktaAuthService) {
+  constructor(public oktaAuth: OktaAuthService, private route: ActivatedRoute, private router: Router) {
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
     );
