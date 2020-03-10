@@ -1,5 +1,13 @@
 html, body {
-  height: 100%;
+  margin: 0;
+  min-width: 1000px;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 80px;
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=styles.css.map */

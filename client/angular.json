@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/dx.generic.trowoo_DarkTheme.css",
               "src/styles.scss"
             ],
             "scripts": []
