@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { OktaAuthModule } from '@okta/okta-angular';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AuthRoutingModule } from './core/auth/auth-routing.module';
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { DxMenuModule, DxNavBarModule } from 'devextreme-angular';
     AppRoutingModule,
     AuthRoutingModule,
     CoreModule,
+    SharedModule,
     OktaAuthModule.initAuth({
       issuer: 'https://dev-793026.okta.com/oauth2/default',
       redirectUri: 'http://localhost:4200/implicit/callback',
