@@ -63,6 +63,7 @@ namespace Trowoo.Services
             return security;
         }
 
+
         /// <summary>
         /// Retrieves all Securities in the database.
         /// </summary>
@@ -108,6 +109,12 @@ namespace Trowoo.Services
             {
                 throw new EntityDoesNotExistException($"Security with id: '{id}' does not exist", exception);
             }
+        }
+
+        public void AddQuotesToSecurity(Security security, List<Quote> quotes)
+        {
+            security.AddQuotes(quotes);
+            TrowooDbContext.SaveChanges();
         }
     }
 }

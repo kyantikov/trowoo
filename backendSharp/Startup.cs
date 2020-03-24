@@ -11,9 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
 
 using Okta.AspNetCore;
 using Trowoo.Services;
+using Trowoo.Services.MarketData;
 
 
 namespace Trowoo
@@ -63,6 +65,9 @@ namespace Trowoo
             services.AddScoped<TrailingStopService>();
             services.AddScoped<LowPriceService>();
             services.AddScoped<HighPriceService>();
+            services.AddScoped<MarketDataService>();
+            services.AddSingleton<AlphaVantageMarketDataProvider>();
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

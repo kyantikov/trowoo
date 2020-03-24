@@ -13,5 +13,14 @@ namespace Trowoo.Models
         [Required]
         public string Name {get; set;}
         public List<Quote> Quotes {get; set;}
+
+        public void AddQuotes(List<Quote> quotes)
+        {
+            if(Quotes == null)
+            {
+                Quotes = new List<Quote>();
+            }
+            Quotes.AddRange(quotes);
+        }
     }
 }
