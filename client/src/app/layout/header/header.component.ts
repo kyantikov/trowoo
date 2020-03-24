@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Router} from '@angular/router';
 
-// TODO: consider moving HeaderOption class to its own service file and use that service as a provider here
+// TODO: consider moving HeaderOption interface to its own service file and use that service as a provider here
 
-class HeaderOption {
+interface HeaderOption {
   text: string;
   icon: string;
+  url?: string;
 }
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class HeaderComponent implements OnInit {
@@ -28,10 +30,10 @@ export class HeaderComponent implements OnInit {
 
   onTabChange(e) {
     const path = e.itemData.text.toLowerCase();
-    this.redirect(path);
+    this.redirectToPath(path);
   }
 
-  redirect(path: string) {
+  redirectToPath(path: string) {
     this.router.navigate([path]);
   }
 

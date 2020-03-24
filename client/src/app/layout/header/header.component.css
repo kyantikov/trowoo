@@ -1,5 +1,12 @@
-::ng-deep .dx-tab.dx-nav-item {
-  display: inline-block;
+.dx-tabs-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  outline: none;
+}
+.dx-tabs-wrapper .dx-item.dx-tab.dx-nav-item {
+  flex-basis: 10%;
 }
 
 /*# sourceMappingURL=header.component.css.map */
