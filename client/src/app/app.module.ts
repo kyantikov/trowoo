@@ -9,7 +9,7 @@ import { AuthRoutingModule } from './core/auth/auth-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './layout/home/home.component';
 import { HeaderComponent } from './layout/header/header.component';
 
 import { DxMenuModule, DxNavBarModule } from 'devextreme-angular';
