@@ -113,8 +113,15 @@ namespace Trowoo.Services
 
         public void AddQuotesToSecurity(Security security, List<Quote> quotes)
         {
-            security.AddQuotes(quotes);
-            TrowooDbContext.SaveChanges();
+            try
+            {
+                security.AddQuotes(quotes);
+                TrowooDbContext.SaveChanges();
+            }
+            catch(DbUpdateException exception)
+            {
+                throw new EntityExistsException($"Quotes with these dates for '{security.Ticker}' already exist", exception);
+            }
         }
     }
 }
