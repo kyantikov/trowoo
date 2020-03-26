@@ -72,6 +72,11 @@ namespace Trowoo.Services
         {
             return TrowooDbContext.Securities.ToList();
         }
+        // TODO: add docs for this method
+        public List<Security> GetAllWithQuotes()
+        {
+            return TrowooDbContext.Securities.Include(s => s.Quotes).ToList();
+        }
 
         /// <summary>
         /// Updates a Security for a specified id.
@@ -110,7 +115,8 @@ namespace Trowoo.Services
                 throw new EntityDoesNotExistException($"Security with id: '{id}' does not exist", exception);
             }
         }
-
+        
+        // TODO: add docs for this method
         public void AddQuotesToSecurity(Security security, List<Quote> quotes)
         {
             try

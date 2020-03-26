@@ -64,11 +64,6 @@ namespace Trowoo.Services
             var security = SecurityService.GetById(securityId);
             position.Security = security;
             TrowooDbContext.Positions.Add(position);
-            TrowooDbContext.SaveChanges();
-            if(portfolio.Positions == null)
-            {
-                portfolio.Positions = new List<Position>();
-            }
             portfolio.Positions.Add(position);
             TrowooDbContext.SaveChanges();
             return position;

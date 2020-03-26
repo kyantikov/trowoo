@@ -12,14 +12,10 @@ namespace Trowoo.Models
         public string Ticker {get; set;}
         [Required]
         public string Name {get; set;}
-        public List<Quote> Quotes {get; set;}
+        public List<Quote> Quotes {get; set;} = new List<Quote>();
 
         public void AddQuotes(List<Quote> quotes)
         {
-            if(Quotes == null)
-            {
-                Quotes = new List<Quote>();
-            }
             Quotes.AddRange(quotes);
         }
     }
