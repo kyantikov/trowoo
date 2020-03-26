@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 
+// TODO: Add docs for this entire file
 namespace Trowoo.Services.MarketData
 {
     public class AlphaVantageMarketDataProvider
@@ -19,6 +20,7 @@ namespace Trowoo.Services.MarketData
             Compact
         }
         const string url = "https://www.alphavantage.co/query?";
+        
         public AlphaVantageMarketDataProvider(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             Configuration = configuration; 
@@ -26,8 +28,10 @@ namespace Trowoo.Services.MarketData
         }
         internal async Task<List<Quote>> GetQuotesAsync(string ticker, OutputSize outputSize)
         {
+            var outputSizeLowercase = outputSize.ToString().ToLower();
+            string apiKey = Configuration.GetValue<string>("AlphaVantage:ApiKey");
             HttpClient httpClient = HttpClientFactory.CreateClient();
-            HttpResponseMessage response = await httpClient.GetAsync($"{url}function=TIME_SERIES_DAILY_ADJUSTED&symbol={ticker}&outputsize={outputSize}&apikey={Configuration.GetValue<string>("AlphaVantage:ApiKey")}");
+            HttpResponseMessage response = await httpClient.GetAsync($"{url}function=TIME_SERIES_DAILY_ADJUSTED&symbol={ticker}&outputsize={outputSizeLowercase}&apikey={apiKey}");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             List<Quote> quotes = new List<Quote>();
@@ -38,32 +42,40 @@ namespace Trowoo.Services.MarketData
                 {
                     string date = jsonElement.Name;
                     JsonElement jsonQuote = jsonElement.Value;
-                    Quote quote = new Quote();
-                    quote.QuoteDate = DateTime.Parse(date);
-                    quote.Open = jsonQuote.ToDecimal("1. open");
-                    quote.High = jsonQuote.ToDecimal("2. high");
-                    quote.Low = jsonQuote.ToDecimal("3. low");
-                    quote.Close = jsonQuote.ToDecimal("4. close");
-                    quote.AdjustedClose = jsonQuote.ToDecimal("5. adjusted close");
-                    quote.Volume = jsonQuote.ToInt("6. volume");
-                    quote.DividendAmount = jsonQuote.ToDecimal("7. dividend amount");
-                    quote.SplitCoefficient = jsonQuote.ToDecimal("8. split coefficient");
+                    var quote = ParseJsonElementAsQuote(jsonQuote, date);
                     quotes.Add(quote);
                 }
             } 
             return quotes;
+        }
+
+        private Quote ParseJsonElementAsQuote(JsonElement jsonQuote, string quoteDate)
+        {
+            return new Quote() {
+                QuoteDate = DateTime.Parse(quoteDate),
+                Open = jsonQuote.ToDecimal("1. open"),
+                High = jsonQuote.ToDecimal("2. high"),
+                Low = jsonQuote.ToDecimal("3. low"),
+                Close = jsonQuote.ToDecimal("4. close"),
+                AdjustedClose = jsonQuote.ToDecimal("5. adjusted close"),
+                Volume = jsonQuote.ToInt("6. volume"),
+                DividendAmount = jsonQuote.ToDecimal("7. dividend amount"),
+                SplitCoefficient = jsonQuote.ToDecimal("8. split coefficient")
+            };
         }
     }
     public static class JsonElementExtensions 
     {
         public static Decimal ToDecimal(this JsonElement jsonElement, string propertyName)
         {
-            return Decimal.Parse(jsonElement.GetProperty(propertyName).GetString());
+            var jsonElementPropertyName = jsonElement.GetProperty(propertyName).GetString();
+            return Decimal.Parse(jsonElementPropertyName);
         }
 
         public static int ToInt(this JsonElement jsonElement, string propertyName)
         {
-            return int.Parse(jsonElement.GetProperty(propertyName).GetString());
+            var jsonElementPropertyName = jsonElement.GetProperty(propertyName).GetString();
+            return int.Parse(jsonElementPropertyName);
         }    
     }
 }
