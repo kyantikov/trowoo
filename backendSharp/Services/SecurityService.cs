@@ -72,7 +72,11 @@ namespace Trowoo.Services
         {
             return TrowooDbContext.Securities.ToList();
         }
-        // TODO: add docs for this method
+
+        /// <summary>
+        /// Retrieves all Securities in the database, including the list of related Quotes.
+        /// </summary>
+        /// <returns>List of all Securities, quotes included.</returns>
         public List<Security> GetAllWithQuotes()
         {
             return TrowooDbContext.Securities.Include(s => s.Quotes).ToList();
@@ -103,6 +107,7 @@ namespace Trowoo.Services
         /// Delete's Security with specified id.
         /// </summary>
         /// <param name="id">Security Id. An integer.</param>
+        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to delete</exception>
         public void Delete(int id)
         {
             try
@@ -116,7 +121,12 @@ namespace Trowoo.Services
             }
         }
         
-        // TODO: add docs for this method
+        /// <summary>
+        /// Inserts list of Quotes into database by adding the list to its related entity.
+        /// </summary>
+        /// <param name="security">Security object to add the list of Quotes to.</param>
+        /// <param name="quotes">List of Quotes to add.</param>
+        /// <exception></exception>
         public void AddQuotesToSecurity(Security security, List<Quote> quotes)
         {
             try
