@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'client';
+  title = 'trowoo';
   isAuthenticated: boolean;
 
   constructor(public oktaAuth: OktaAuthService, private route: ActivatedRoute, private router: Router) {

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthComponent } from "./auth.component";
-import { OktaCallbackComponent } from "@okta/okta-angular";
+import { AuthComponent } from './components/auth/auth.component';
+import { OktaCallbackComponent } from '@okta/okta-angular';
 
 
 const routes: Routes = [
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class CoreRoutingModule { }
