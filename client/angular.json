@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/devextreme/dist/css/dx.generic.trowoo_DarkTheme.css",
+              "node_modules/devextreme/dist/css/dx.material.purple.dark.css",
               "src/styles.scss"
             ],
             "scripts": []
