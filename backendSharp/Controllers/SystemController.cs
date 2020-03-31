@@ -5,7 +5,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
-using Trowoo.Models;
 using Trowoo.Services.MarketData;
 
 namespace Trowoo.Controllers
@@ -22,9 +21,9 @@ namespace Trowoo.Controllers
         }
 
         [HttpGet("quote")]
-        public async Task<ActionResult> GetQuotes()
+        public ActionResult GetQuotes()
         {
-            await MarketDataService.RetrieveMarketDataAsync();
+            MarketDataProviderBackgroundService.StartProcessing();
             return Ok();
         }
     }

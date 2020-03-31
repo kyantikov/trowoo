@@ -56,8 +56,10 @@ namespace Trowoo
                 Audience = Configuration.GetValue<string>("Okta:Audience")
             });
             // services.AddAuthorization();
+            services.AddHttpClient();
             services.AddControllers();
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
             services.AddDbContext<TrowooDbContext>();
             services.AddScoped<SecurityService>();
             services.AddScoped<PortfolioService>();
@@ -66,8 +68,9 @@ namespace Trowoo
             services.AddScoped<LowPriceService>();
             services.AddScoped<HighPriceService>();
             services.AddScoped<MarketDataService>();
+
             services.AddSingleton<AlphaVantageMarketDataProvider>();
-            services.AddHttpClient();
+            services.AddHostedService<MarketDataProviderBackgroundService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
