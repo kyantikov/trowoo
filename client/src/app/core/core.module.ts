@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OKTA_CONFIG, OktaAuthService } from '@okta/okta-angular' ;
+import { OKTA_CONFIG, OktaAuthModule, OktaAuthService } from '@okta/okta-angular' ;
 
-import { AuthComponent } from './components/auth/auth.component';
-import { AuthService } from './services/auth.service';
-import { CoreRoutingModule } from './core-routing.module';
-import appConfig from '../app.config';
+import { DxMenuModule, DxNavBarModule } from 'devextreme-angular';
+
+import { AuthService } from './auth/auth.service';
+import { HeaderComponent } from './header/header.component';
+import appConfig from '../configs/okta.config';
 
 
 const oktaConfig = Object.assign({
@@ -18,16 +19,36 @@ const oktaConfig = Object.assign({
 
 @NgModule({
   declarations: [
-    AuthComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
-    CoreRoutingModule,
+    DxNavBarModule,
+    DxMenuModule,
+    OktaAuthModule,
   ],
-  providers: [
-    OktaAuthService,
-    AuthService,
-    {provide: OKTA_CONFIG, useValue: oktaConfig},
-  ]
+  exports: [
+    HeaderComponent,
+  ],
+  providers: [],
 })
-export class CoreModule { }
+export class CoreModule {
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: CoreModule,
+      providers: [
+        OktaAuthService,
+        AuthService,
+        {provide: OKTA_CONFIG, useValue: oktaConfig},
+      ]
+    };
+  }
+
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: CoreModule,
+      providers: []
+    };
+  }
+
+}

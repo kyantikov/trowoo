@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import * as OktaSignIn from '@okta/okta-signin-widget';
 import { OktaAuthService } from '@okta/okta-angular';
-import appConfig from '../../app.config';
+import appConfig from '../../configs/okta.config';
 
 @Injectable({
   providedIn: 'root'

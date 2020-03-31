@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 
 import { OktaAuthService } from '@okta/okta-angular';
-import { AuthService } from '../../services/auth.service';
+
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class AuthComponent implements OnInit {
-  signIn;
+export class LoginComponent implements OnInit {
   widget;
+  signIn;
 
   constructor(private oktaAuth: OktaAuthService, private router: Router, private authService: AuthService) {
     // Show the widget when prompted, otherwise remove it from the DOM.
