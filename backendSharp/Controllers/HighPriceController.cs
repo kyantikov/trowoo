@@ -20,8 +20,8 @@ namespace Trowoo.Controllers
     [Route("alert/highprice")]
     public class HighPriceController : ControllerBase
     {
-        private HighPriceService HighPriceService;
-        private ILogger Logger;
+        private HighPriceService HighPriceService { get; }
+        private ILogger Logger { get; }
 
         /// <summary>
         /// Constructor method injects HighPriceService and Logger into the class upon instantiation.

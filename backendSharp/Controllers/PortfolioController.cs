@@ -24,8 +24,8 @@ namespace Trowoo.Controllers
     [Route("portfolio")]
     public class PortfolioController : ControllerBase
     {
-        private PortfolioService PortfolioService;
-        private readonly ILogger<PortfolioController> Logger;
+        private PortfolioService PortfolioService { get; }
+        private ILogger<PortfolioController> Logger { get; }
 
         /// <summary>
         /// Constructor method injects PortfolioService and Logger into the class upon instantiation.

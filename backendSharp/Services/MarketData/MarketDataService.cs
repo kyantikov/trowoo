@@ -57,7 +57,6 @@ namespace Trowoo.Services.MarketData
         {
             return await Task<List<Quote>>.Factory.StartNew( () => 
             {
-                
                 return alphaVantageQuotes.Except(securityQuotes).ToList();
             });
         }

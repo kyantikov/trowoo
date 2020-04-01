@@ -14,9 +14,9 @@ namespace Trowoo.Services
     /// </remarks>
     public class PositionService
     {
-        private TrowooDbContext TrowooDbContext;
-        private PortfolioService PortfolioService;
-        private SecurityService SecurityService;
+        private TrowooDbContext TrowooDbContext { get; }
+        private PortfolioService PortfolioService { get; }
+        private SecurityService SecurityService { get; }
 
         /// <summary>
         /// Constructor method injects the dependency of type TrowooDbContext, PortfolioService, SecurityService into the class upon instantiation.
@@ -38,7 +38,7 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Queries datbase for a position with specified id.
+        /// Retrieves Position with specified id.
         /// </summary>
         /// <param name="id">Position id. An integer.</param>
         /// <returns>Position object.</returns>
@@ -56,7 +56,6 @@ namespace Trowoo.Services
         /// <returns>New Portfolio object.</returns>
         /// <remarks>
         /// <para>Uses Portfolio- and SecurityService classes to obtain respective entities.</para>
-        /// <para></para>
         /// </remarks>
         public Position Create(Position position, int portfolioId, int securityId)
         {
@@ -115,8 +114,9 @@ namespace Trowoo.Services
         /// Attempts to delete a Position with a specified id.
         /// </summary>
         /// <param name="id">Position Id. An integer.</param>
-        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to
-        /// delete an entity in the database with <paramref name="id"/></exception>
+        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">
+        /// Throws when attempting to delete an entity in the database with <paramref name="id"/>
+        /// </exception>
         public void Delete(int id)
         {
             try

@@ -22,7 +22,7 @@ namespace Trowoo.Services
     /// </remarks>
     public class TrailingStopService
     {
-        private TrowooDbContext TrowooDbContext;
+        private TrowooDbContext TrowooDbContext { get; }
 
         /// <summary>
         /// Constructor method injects the dependency of type TrowooDbContext into the class upon instantiation.
@@ -34,7 +34,7 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Queries database for TrailingStop with specified id.
+        /// Retrieves TrailingStop with specified id.
         /// </summary>
         /// <param name="id">TrailingStop Id. An integer.</param>
         /// <returns>TrailingStop object.</returns>

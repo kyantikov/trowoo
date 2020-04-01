@@ -11,11 +11,12 @@ namespace Trowoo.Services
     /// </summary>
     /// <remarks>
     /// <para>This class has the following methods:</para>
-    /// <para>FindOrCreate, GetAll, Update, Delete, GetById, GetByTicker</para>
+    /// <para>FindOrCreate, GetAll, Update, Delete, GetById, GetByTicker, AddQuotesToSecurity</para>
     /// </remarks>
     public class SecurityService
     {
-        private TrowooDbContext TrowooDbContext;
+        private TrowooDbContext TrowooDbContext { get; }
+
         /// <summary>
         /// Constructor method injects the dependency of type TrowooDbContext into the class upon instantiation.
         /// </summary>
@@ -46,7 +47,7 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Creates Security in DB if !exists.
+        /// Creates Security in DB if security does not already exist.
         /// </summary>
         /// <param name="security">Security object.</param>
         /// <returns>Security object originally passed as an argument.</returns>
@@ -62,7 +63,6 @@ namespace Trowoo.Services
             TrowooDbContext.SaveChanges();
             return security;
         }
-
 
         /// <summary>
         /// Retrieves all Securities in the database.
@@ -104,7 +104,7 @@ namespace Trowoo.Services
         }
         
         /// <summary>
-        /// Delete's Security with specified id.
+        /// Attempts to delete a Security with specified id.
         /// </summary>
         /// <param name="id">Security Id. An integer.</param>
         /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to delete</exception>
@@ -126,7 +126,9 @@ namespace Trowoo.Services
         /// </summary>
         /// <param name="security">Security object to add the list of Quotes to.</param>
         /// <param name="quotes">List of Quotes to add.</param>
-        /// <exception></exception>
+        /// <exception cref="EntityExistsException">
+        /// Throws when attempting to add duplicate Quotes for a security.
+        /// </exception>
         public void AddQuotesToSecurity(Security security, List<Quote> quotes)
         {
             try

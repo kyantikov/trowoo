@@ -20,8 +20,8 @@ namespace Trowoo.Controllers
     [Route("alert/trailingstop")]
     public class TrailingStopController : ControllerBase
     {
-        private TrailingStopService TrailingStopService;
-        private ILogger Logger;
+        private TrailingStopService TrailingStopService { get; }
+        private ILogger<TrailingStopController> Logger { get; }
 
         /// <summary>
         /// Constructor method injects TrailingStopService and Logger into the class upon instantiation.

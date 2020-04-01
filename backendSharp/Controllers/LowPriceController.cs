@@ -20,8 +20,8 @@ namespace Trowoo.Controllers
     [Route("alert/lowprice")]
     public class LowPriceController : ControllerBase
     {
-        private LowPriceService LowPriceService;
-        private ILogger Logger;
+        private LowPriceService LowPriceService { get; }
+        private ILogger Logger { get; }
 
         /// <summary>
         /// Constructor method injects LowPriceService and Logger into the class upon instantiation.
@@ -40,7 +40,7 @@ namespace Trowoo.Controllers
         /// <param name="id">LowPrice id. An integer.</param>
         /// <returns>
         /// <para>Returns 200 if the LowPrice exists. LowPrice object returned.</para>
-        /// <para>Returns 404 if the LowPrice does not exist.</para>
+        /// <para>Returns 404 if the LowPrice does not exist.</para>x
         /// </returns>
         [HttpGet("{id:int}")]
         public ActionResult<LowPrice> GetById([FromRoute] int id)

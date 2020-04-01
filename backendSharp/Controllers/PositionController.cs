@@ -20,8 +20,8 @@ namespace Trowoo.Controllers
     [Route("position")]
     public class PositionController : ControllerBase
     {
-        private PositionService PositionService;
-        private readonly ILogger Logger;
+        private PositionService PositionService { get; }
+        private ILogger<PositionController> Logger { get; }
 
         /// <summary>
         /// Constructor method injects PositionService and Logger into the class upon instantiation.

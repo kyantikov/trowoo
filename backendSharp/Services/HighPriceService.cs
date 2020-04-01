@@ -14,7 +14,7 @@ namespace Trowoo.Services
     /// </remarks>
     public class HighPriceService
     {
-        private TrowooDbContext TrowooDbContext;
+        private TrowooDbContext TrowooDbContext { get ;}
 
         /// <summary>
         /// Constructor method injects the dependency of type TrowooDbContext into the class upon instantiation.
@@ -26,7 +26,7 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Queries database for HighPrice with specified id.
+        /// Retrieves HighPrice with specified id.
         /// </summary>
         /// <param name="id">HighPrice Id. An integer.</param>
         /// <returns>HighPrice object.</returns>

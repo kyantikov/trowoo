@@ -20,8 +20,8 @@ namespace Trowoo.Controllers
     [Route("security")]
     public class SecurityController : ControllerBase
     {
-        private SecurityService SecurityService;
-        private readonly ILogger<SecurityController> Logger;
+        private SecurityService SecurityService { get; }
+        private ILogger<SecurityController> Logger { get; }
 
         /// <summary>
         /// Constructor method injects SecurityService and Logger into the class upon instantiation.
@@ -114,12 +114,10 @@ namespace Trowoo.Controllers
         /// DELETE request to delete a Security.
         /// </summary>
         /// <param name="id">Security Id. An integer.</param>
-        /// <returns>
-        /// <para>
         /// <exception cref="Trowoo.Services.EntityDoesNotExistException">
         /// Throws when attempting to delete a Security that does not exist.
         /// </exception>
-        /// </para>
+        /// <returns>
         /// <para>Returns 200 if the Security was successfully deleted.</para>
         /// <para>Returns 404 if the Security with specified id does not exist.</para>
         /// </returns>

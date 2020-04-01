@@ -15,7 +15,7 @@ namespace Trowoo.Services
     /// </remarks>
     public class PortfolioService
     {
-        private TrowooDbContext TrowooDbContext;
+        private TrowooDbContext TrowooDbContext { get; }
 
         /// <summary>
         /// Constructor method injects the dependency of type TrowooDbContext into the class upon instantiation.
@@ -27,9 +27,9 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Queries the database for a Portfolio with the specified id.
+        /// Retrieves detailed Portfolio with the specified id.
         /// </summary>
-        /// <param name="id">Portfolio id.</param>
+        /// <param name="id">Portfolio id. An integer.</param>
         /// <returns>
         /// <para>Returns Portfolio object with eagerly loaded related entities.</para>
         /// </returns>
@@ -48,10 +48,10 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// 
+        /// Retrieves non-detailed Portfolio with the specified id.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Portfolio id. An integer.</param>
+        /// <returns>Returns Portfolio object.</returns>
         public Portfolio GetById(int id)
         {
             return TrowooDbContext.Portfolios.Find(id);
@@ -60,7 +60,7 @@ namespace Trowoo.Services
         /// <summary>
         /// This method retrieves all Portfolios for a specified userId.
         /// </summary>
-        /// <param name="userId">User Id.</param>
+        /// <param name="userId">User Id. A string.</param>
         /// <returns>
         /// <para>List of Portfolios.</para>
         /// <para>Eagerly loads Positions and all related entities w/i each Position.</para>
@@ -80,7 +80,7 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Creates a Portfolio for a user.
+        /// Creates a new Portfolio for a user.
         /// </summary>
         /// <param name="portfolio">Portfolio object.</param>
         /// <returns>Portfolio object originally passed as an argument.</returns>
@@ -94,9 +94,9 @@ namespace Trowoo.Services
         /// <summary>
         /// Updates a Portfolio's name for a specified id.
         /// </summary>
-        /// <param name="id">Portfolio Id.</param>
-        /// <param name="name">Updated name.</param>
-        /// <param>
+        /// <param name="id">Portfolio Id. An integer</param>
+        /// <param name="name">Updated name. A string.</param>
+        /// <param name="userId">Okta-generated User Id. A string.</param>
         /// <returns>Updated Portfolio object.</returns>
         public Portfolio Update(int id, string name, string userId)
         {
@@ -113,9 +113,11 @@ namespace Trowoo.Services
         /// <summary>
         /// Attempts to delete a Portfolio for a specified id.
         /// </summary>
-        /// <param name="id">Portfolio Id.</param>
-        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">Throws when attempting to
-        /// delete an entity in the database with <paramref name="id"/></exception>
+        /// <param name="id">Portfolio Id. An integer.</param>
+        /// <param name="userId">Okta-generated User Id. A string.</param>
+        /// <exception cref="Trowoo.Services.EntityDoesNotExistException">
+        /// Throws when attempting to delete an entity in the database with <paramref name="id"/>
+        /// </exception>
         public void Delete(int id, string userId)
         {
             var portfolio = GetById(id);
