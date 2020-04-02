@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { OKTA_CONFIG, OktaAuthModule, OktaAuthService } from '@okta/okta-angular' ;
@@ -33,7 +33,7 @@ const oktaConfig = Object.assign({
   providers: [],
 })
 export class CoreModule {
-  static forChild(): ModuleWithProviders {
+  static forAuth(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
       providers: [
@@ -41,6 +41,15 @@ export class CoreModule {
         AuthService,
         {provide: OKTA_CONFIG, useValue: oktaConfig},
       ]
+    };
+  }
+
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: CoreModule,
+      providers: [
+
+      ],
     };
   }
 
