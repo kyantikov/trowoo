@@ -9,7 +9,7 @@ import { HomeComponent } from './pages/home.component';
   declarations: [HomeComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
   ]
 })
 export class HomeModule { }

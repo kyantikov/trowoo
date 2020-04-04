@@ -7,8 +7,7 @@ import { DxMenuModule, DxNavBarModule } from 'devextreme-angular';
 
 import { AuthService } from './auth/auth.service';
 import { HeaderComponent } from './header/header.component';
-import appConfig from '../configs/okta.config';
-
+import appConfig from '../config/okta.config';
 
 const oktaConfig = Object.assign({
   onAuthRequired: ({oktaAuth, router}) => {
