@@ -47,24 +47,6 @@ namespace Trowoo.Services
         }
 
         /// <summary>
-        /// Creates Security in DB if security does not already exist.
-        /// </summary>
-        /// <param name="security">Security object.</param>
-        /// <returns>Security object originally passed as an argument.</returns>
-        public Security FindOrCreate(Security security)
-        {
-            var existingSecurity = GetByTicker(security.Ticker);
-            if (existingSecurity != null)
-            {
-                return existingSecurity;
-            }
-            //
-            TrowooDbContext.Add(security);
-            TrowooDbContext.SaveChanges();
-            return security;
-        }
-
-        /// <summary>
         /// Retrieves all Securities in the database.
         /// </summary>
         /// <returns>List of all Securities.</returns>
@@ -80,6 +62,24 @@ namespace Trowoo.Services
         public List<Security> GetAllWithQuotes()
         {
             return TrowooDbContext.Securities.Include(s => s.Quotes).ToList();
+        }
+
+        /// <summary>
+        /// Creates Security in DB if security does not already exist.
+        /// </summary>
+        /// <param name="security">Security object.</param>
+        /// <returns>Security object originally passed as an argument.</returns>
+        public Security FindOrCreate(Security security)
+        {
+            var existingSecurity = GetByTicker(security.Ticker);
+            if (existingSecurity != null)
+            {
+                return existingSecurity;
+            }
+            //
+            TrowooDbContext.Add(security);
+            TrowooDbContext.SaveChanges();
+            return security;
         }
 
         /// <summary>

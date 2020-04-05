@@ -41,7 +41,8 @@ namespace Trowoo.Controllers
         [HttpGet]
         public ActionResult<List<Security>> GetAll()
         {
-            return SecurityService.GetAll();
+            var securityList = SecurityService.GetAll();
+            return Ok(securityList);
         }
 
         /// <summary>
