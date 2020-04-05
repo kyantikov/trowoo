@@ -68,6 +68,7 @@ namespace Trowoo
             services.AddScoped<LowPriceService>();
             services.AddScoped<HighPriceService>();
             services.AddScoped<MarketDataService>();
+            services.AddScoped<QuoteService>();
 
             services.AddSingleton<AlphaVantageMarketDataProvider>();
             services.AddHostedService<MarketDataProviderBackgroundService>();
