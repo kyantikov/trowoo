@@ -22,10 +22,10 @@ namespace Trowoo.Controllers
         private ILogger<QuoteController> Logger { get; }
 
         /// <summary>
-        /// 
+        /// Constructor method injects QuoteService and Logger into the class upon instantiation.
         /// </summary>
-        /// <param name="quoteService"></param>
-        /// <param name="logger"></param>
+        /// <param name="quoteService">QuoteService class Dependency Injection.</param>
+        /// <param name="logger">Logger Dependency Injection.</param>
         public QuoteController(QuoteService quoteService, ILogger<QuoteController> logger)
         {
             QuoteService = quoteService;
@@ -42,7 +42,7 @@ namespace Trowoo.Controllers
         /// <para></para>
         /// </returns>
         [HttpGet("security/{securityId:int}/{date}")]
-        public ActionResult<Quote> GetQuoteForSecurityByDate([FromRoute] int securityId, [FromRoute] string date)
+        public ActionResult<Quote> GetQuoteByDate([FromRoute] int securityId, [FromRoute] string date)
         {
             Quote quote = QuoteService.GetQuoteByDate(securityId, date);
             return Ok(quote);
@@ -58,7 +58,7 @@ namespace Trowoo.Controllers
         /// <para>Returns 200 with list of Quote objects if request is successful and Quote object for specified Security exist within the date range provided.</para>
         /// </returns>
         [HttpGet("security/{securityId:int}/{initialDate}/{endDate}")]
-        public ActionResult<List<Quote>> GetQuotesForSecurityByDateRange([FromRoute] int securityId, [FromRoute] string initialDate, [FromRoute] string endDate)
+        public ActionResult<List<Quote>> GetQuotesByDateRange([FromRoute] int securityId, [FromRoute] string initialDate, [FromRoute] string endDate)
         {
             List<Quote> quoteRange = QuoteService.GetQuotesByDateRange(securityId, initialDate, endDate); 
             return Ok(quoteRange);
