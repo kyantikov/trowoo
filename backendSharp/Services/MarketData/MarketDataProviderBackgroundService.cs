@@ -26,7 +26,7 @@ namespace Trowoo.Services.MarketData
     {
       while (!cancellationToken.IsCancellationRequested)
       {
-        await ProcessingSemaphore.WaitAsync();
+        await ProcessingSemaphore.WaitAsync(cancellationToken);
 
         try 
         {
@@ -35,7 +35,7 @@ namespace Trowoo.Services.MarketData
           using (var scope = ServiceProvider.CreateScope())
           {
             var marketDataService = scope.ServiceProvider.GetRequiredService<MarketDataService>();
-            await marketDataService.RetrieveMarketDataAsync();
+            await marketDataService.RetrieveMarketDataAsync(cancellationToken);
           }
         } 
         catch(Exception exception) 

@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
@@ -44,12 +45,12 @@ namespace Trowoo.Services.MarketData
         /// <param name="ticker">Security ticker. A string.</param>
         /// <param name="outputSize">Alpha Vantage API response output size. An OutputSize enum.</param>
         /// <returns>List of serialized Quote objects.</returns>
-        internal async Task<List<Quote>> GetQuotesAsync(string ticker, OutputSize outputSize)
+        internal async Task<List<Quote>> GetQuotesAsync(string ticker, OutputSize outputSize, CancellationToken cancellationToken)
         {
             var outputSizeLowercase = outputSize.ToString().ToLower();
             var apiKey = Configuration.GetValue<string>("AlphaVantage:ApiKey");
             HttpClient httpClient = HttpClientFactory.CreateClient();
-            HttpResponseMessage response = await httpClient.GetAsync($"{TimeSeriesDailyAdjustedURL}&symbol={ticker}&outputsize={outputSizeLowercase}&apikey={apiKey}");
+            HttpResponseMessage response = await httpClient.GetAsync($"{TimeSeriesDailyAdjustedURL}&symbol={ticker}&outputsize={outputSizeLowercase}&apikey={apiKey}", cancellationToken);
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
             return ParseResponseBody(responseBody);
