@@ -94,7 +94,7 @@ namespace Trowoo.Services
             {
                 return null;
             }
-            if(GetByTicker(security.Ticker) != null)
+            if(existingSecurity.Ticker != security.Ticker && GetByTicker(security.Ticker) != null)
             {
                 throw new EntityExistsException($"Security with ticker: '{security.Ticker}' already exists");
             }
@@ -102,6 +102,30 @@ namespace Trowoo.Services
             TrowooDbContext.SaveChanges();
             return security;
         }
+
+        // * This method may be needed if data IS NOT sent via JSON from the frontend.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updatedProperties"></param>
+        /// <returns></returns>
+        // public Security Update(int id, Dictionary<string, object> updatedProperties)
+        // {
+        //     var existingSecurity = GetById(id);
+        //     var newTicker = (string)updatedProperties[nameof(Security.Ticker)];
+        //     if(existingSecurity == null)
+        //     {
+        //         return null;
+        //     }
+        //     if(existingSecurity.Ticker != newTicker && GetByTicker(newTicker) != null)
+        //     {
+        //         throw new EntityExistsException($"Security with ticker: '{newTicker}' already exists");
+        //     }
+        //     TrowooDbContext.Entry(existingSecurity).CurrentValues.SetValues(updatedProperties);
+        //     TrowooDbContext.SaveChanges();
+        //     return existingSecurity;
+        // }
         
         /// <summary>
         /// Attempts to delete a Security with specified id.

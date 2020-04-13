@@ -111,6 +111,31 @@ namespace Trowoo.Controllers
             }
         }
 
+        // ? This update method maybe needed if data IS NOT sent via JSON from the frontend.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name=""key""></param>
+        /// <returns></returns>
+        // [HttpPut]
+        // public ActionResult<Security> Update([FromForm(Name = "key")] int id, [FromForm(Name = "values")] Dictionary<string, object> updatedProperties)
+        // {
+        //     try
+        //     {
+        //         var security = SecurityService.Update(id, updatedProperties);
+        //         if(security == null)
+        //         {
+        //             return NotFound();
+        //         }
+        //         return Ok(security);
+        //     }
+        //     catch(EntityExistsException exception)
+        //     {
+        //         Logger.LogWarning(exception, exception.Message);
+        //         return Conflict();
+        //     }
+        // }
+
         /// <summary>
         /// DELETE request to delete a Security.
         /// </summary>
