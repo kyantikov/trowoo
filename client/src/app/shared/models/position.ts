@@ -8,7 +8,7 @@ export interface Position {
   openedDate: Date;
   cost: number;
   security: Security;
-  trailingStop: TrailingStop;
-  lowPrice: LowPrice;
-  highPrice: HighPrice;
+  trailingStop?: TrailingStop;
+  lowPrice?: LowPrice;
+  highPrice?: HighPrice;
 }

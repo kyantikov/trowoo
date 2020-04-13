@@ -4,5 +4,5 @@ export interface Security {
   id: number;
   ticker: string;
   name: string;
-  quotes: Quote[];
+  quotes?: Quote[];
 }
