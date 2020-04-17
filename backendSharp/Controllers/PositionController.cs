@@ -79,8 +79,8 @@ namespace Trowoo.Controllers
         /// <para>Returns 200 if the related Security was successfully updated.</para>
         /// <para>Returns 404 if the Position or Security do not exist.</para>
         /// </returns>
-        [HttpPut("{id:int}")]
-        public ActionResult<Position> UpdateSecurityForPosition([FromRoute] int id, [FromBody] string ticker)
+        [HttpPut]
+        public ActionResult<Position> UpdateSecurityForPosition([FromBody] int id, [FromBody] string ticker)
         {
             var position = PositionService.UpdateSecurityForPosition(id, ticker);
             if(position == null)
