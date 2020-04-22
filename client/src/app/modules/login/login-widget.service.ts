@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 
 import * as OktaSignIn from '@okta/okta-signin-widget';
 import { OktaAuthService } from '@okta/okta-angular';
 import appConfig from '../../config/okta.config';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
+@Injectable()
+export class LoginWidgetService {
   widget;
 
-  constructor(private oktaAuth: OktaAuthService) {
+  constructor(private oktaAuth: OktaAuthService, private router: Router) {
     this.widget = new OktaSignIn({
       baseUrl: appConfig.issuer.split('/oauth2')[0],
       clientId: appConfig.clientId,
@@ -35,6 +34,16 @@ export class AuthService {
         registration: true,
       },
     });
+
+    // Show the widget when prompted, otherwise remove it from the DOM.
+    router.events.forEach(event => {
+      if (event instanceof NavigationStart) {
+        if (event.url === '/login') {
+        } else {
+          this.widget.remove();
+        }
+      }
+     }).then(r => console.log(r));
   }
 
   getWidget() {

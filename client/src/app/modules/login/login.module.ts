@@ -14,7 +14,7 @@ import { LoginComponent } from './pages/login.component';
   imports: [
     CommonModule,
     LoginRoutingModule,
-    CoreModule.forAuth(),
+    CoreModule.forChild(),
   ],
 })
 export class LoginModule { }
