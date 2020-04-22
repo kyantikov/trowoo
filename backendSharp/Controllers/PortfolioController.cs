@@ -97,8 +97,8 @@ namespace Trowoo.Controllers
         /// <para>Returns 404 if a Portfolio with specified id does not exist.</para>
         /// <para>Returns 404 if updating the Portfolio to new values fails the model validations.</para>
         /// </returns>
-        [HttpPut]
-        public ActionResult<Portfolio> Update([FromBody] int id ,[FromBody] string name)
+        [HttpPut("id:int")]
+        public ActionResult<Portfolio> Update([FromRoute] int id ,[FromBody] string name)
         {
             var portfolio = PortfolioService.Update(id, name, User.GetId());
             if(portfolio == null)
