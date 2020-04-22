@@ -78,8 +78,8 @@ namespace Trowoo.Controllers
         /// <para>Returns 404 if the TrailingStop does not exist.</para>
         /// <para>Returns 404 if the TrailingStop failed validation and was not updated and saved.</para>
         /// </returns>
-        [HttpPut("id:int")]
-        public ActionResult<TrailingStop> Update([FromRoute] int id,[FromBody] decimal percent)
+        [HttpPut]
+        public ActionResult<TrailingStop> Update([FromBody] int id,[FromBody] decimal percent)
         {
             var trailingStop = TrailingStopService.Update(id, percent);
             if(trailingStop == null)

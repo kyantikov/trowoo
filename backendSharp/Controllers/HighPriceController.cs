@@ -78,8 +78,8 @@ namespace Trowoo.Controllers
         /// <para>Returns 404 if the HighPrice does not exist.</para>
         /// <para>Returns 404 if the HighPrice failed model validations and was not upated and saved.</para>
         /// </returns>
-        [HttpPut("id:int")]
-        public ActionResult<HighPrice> Update([FromRoute] int id, [FromBody] decimal price)
+        [HttpPut]
+        public ActionResult<HighPrice> Update([FromBody] int id, [FromBody] decimal price)
         {
             var highPrice = HighPriceService.Update(id, price);
             if(highPrice == null)
