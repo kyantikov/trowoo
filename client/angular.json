@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/devextreme/dist/css/dx.material.purple.dark.css",
+              "node_modules/devextreme/dist/css/dx.material.teal.light.css",
               "src/styles.scss"
             ],
             "scripts": []
