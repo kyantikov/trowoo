@@ -22,32 +22,19 @@ export default class TrowooCustomStore extends CustomStore {
           });
       },
       insert: values => {
-        return this.http.post(this.url, values)
-          .toPromise()
-          .then(result => {
-            return result;
-          });
+        return this.http.post(this.url, values).toPromise();
       },
       // TODO: fix 'e.id' error below ----> fixed with interface above:: is this correct??
-      // !! may not work for batch updating
       update: (key, values) => {
         // console.log(values);
-        const matchedEntity = this.loadedData.filter(e => e.id === key).pop();
+        const matchedEntity = this.loadedData.filter(e => e.id === key)[0];
         // console.log(matchedEntity);
         const updatedSecurity = {...matchedEntity, ...values};
         // console.log(updatedSecurity);
-        return this.http.put(this.url, updatedSecurity)
-          .toPromise()
-          .then(result => {
-            return result;
-          });
+        return this.http.put(this.url, updatedSecurity).toPromise();
       },
       remove: key => {
-        return this.http.delete(this.url + key)
-          .toPromise()
-          .then(result => {
-            return result;
-          });
+        return this.http.delete(this.url + key).toPromise();
       }
     });
   }
