@@ -1,4 +1,15 @@
+import { UserClaims } from '@okta/okta-angular';
+
+import { User } from '../../shared/models/user.model';
+
 export class AuthServiceExtensions {
+
+  public static parseUserClaims(claims: UserClaims): User {
+    const tokenExp = AuthServiceExtensions.getTokenExpirationFromLocalStorage();
+    return new User(
+      claims.sub, claims.given_name, claims.family_name, claims.preferred_username, tokenExp,
+    );
+  }
 
   public static getTokenExpirationFromLocalStorage() {
     const storageIsPopulated = localStorage.length > 0;

@@ -12,9 +12,9 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
 
   constructor(private oktaAuthService: OktaAuthService) {
-    this.getUserFromOkta().then(oktaUserInfo => {
-      const parsedUserInfo = this.parseUserClaims(oktaUserInfo);
-      this.user.next(parsedUserInfo);
+    this.getUserFromOkta().then((oktaUserInfo: UserClaims) => {
+      const parsedUserObject = AuthServiceExtensions.parseUserClaims(oktaUserInfo);
+      this.user.next(parsedUserObject);
     });
   }
 
@@ -22,11 +22,5 @@ export class AuthService {
     return await this.oktaAuthService.getUser();
   }
 
-  parseUserClaims(claims: UserClaims) {
-    const tokenExp = AuthServiceExtensions.getTokenExpirationFromLocalStorage();
-    return new User(
-      claims.sub, claims.given_name, claims.family_name, claims.preferred_username, tokenExp,
-    );
-  }
 
 }
