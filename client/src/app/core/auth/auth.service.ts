@@ -1,29 +1,32 @@
 import { Injectable } from '@angular/core';
 
-import { OktaAuthService } from '@okta/okta-angular';
-import { UserClaims } from '@okta/okta-angular';
-import { BehaviorSubject, from, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
-}
+import { OktaAuthService, UserClaims } from '@okta/okta-angular';
+
+import { AuthServiceExtensions } from './auth.service.extensions';
+import { User } from '../../shared/models/user.model';
 
 @Injectable()
 export class AuthService {
-  user: any;
+  user = new BehaviorSubject<User>(null);
 
   constructor(private oktaAuthService: OktaAuthService) {
-    this.getUserFromOkta().then();
+    this.getUserFromOkta().then(oktaUserInfo => {
+      const parsedUserInfo = this.parseUserClaims(oktaUserInfo);
+      this.user.next(parsedUserInfo);
+    });
   }
 
   async getUserFromOkta() {
-    return await this.oktaAuthService.getUser().then((user) => (console.log(user)) );
+    return await this.oktaAuthService.getUser();
   }
 
   parseUserClaims(claims: UserClaims) {
-    // let userData = {}
+    const tokenExp = AuthServiceExtensions.getTokenExpirationFromLocalStorage();
+    return new User(
+      claims.sub, claims.given_name, claims.family_name, claims.preferred_username, tokenExp,
+    );
   }
+
 }
