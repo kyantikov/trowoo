@@ -1,11 +1,12 @@
 export class User {
+  public fullName: string;
+
   constructor(
     private id: string,
     public firstName: string,
     public lastName: string,
     public email: string,
     private expTimestamp: number,
-    public fullName?: string,
   ) {
     this.fullName = firstName + ' ' + lastName;
   }
