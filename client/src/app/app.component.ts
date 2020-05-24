@@ -1,23 +1,28 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { OktaAuthService } from '@okta/okta-angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { AuthService } from './core/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'trowoo';
-  isAuthenticated: boolean;
+  private authSubscription = new Subscription();
 
-  constructor(public oktaAuth: OktaAuthService, private route: ActivatedRoute, private router: Router) {
-    this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
-    );
+
+  constructor(private authService: AuthService) {
   }
 
-  async ngOnInit() {
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+  ngOnInit(): void {
+    this.authSubscription
+      .add(this.authService.$isLoggedIn.subscribe(l => console.log(l)))
+      .add(this.authService.$user.subscribe(u => console.log(u)));
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 }
