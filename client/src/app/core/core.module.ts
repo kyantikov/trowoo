@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OKTA_CONFIG, OktaAuthModule, OktaAuthService } from '@okta/okta-angular' ;
 
-import { DxMenuModule, DxNavBarModule } from 'devextreme-angular';
+import { DxToolbarModule } from 'devextreme-angular';
 
 import appConfig from '../config/okta.config';
 import { AuthService } from './auth/auth.service';
@@ -22,8 +22,7 @@ const oktaConfig = Object.assign({
   ],
   imports: [
     CommonModule,
-    DxNavBarModule,
-    DxMenuModule,
+    DxToolbarModule,
     OktaAuthModule,
   ],
   exports: [

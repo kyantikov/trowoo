@@ -1,31 +1,26 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Router} from '@angular/router';
-
-// TODO: consider moving HeaderOption interface to its own service file and use that service as a provider here
-
-interface HeaderOption {
-  text: string;
-  icon: string;
-  url?: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 
 export class HeaderComponent implements OnInit {
-  navItems: HeaderOption[];
+  userButtonOptions: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.userButtonOptions = {
+      icon: 'user',
+      onClick: () => {
+        console.log('did something');
+      }
+    };
+  }
+
 
   ngOnInit() {
-    this.navItems = [
-      {text: 'Login', icon: 'user'},
-      {text: 'Home', icon: 'home'}
-    ];
   }
 
   onTabChange(e) {

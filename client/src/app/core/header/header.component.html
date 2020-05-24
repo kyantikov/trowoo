@@ -1,7 +1,6 @@
-<dx-nav-bar
-  [dataSource]="navItems"
-  height="50px"
-  width="100%"
-  (onItemClick)="onTabChange($event)">
-</dx-nav-bar>
-
+<header>
+  <dx-toolbar height="80px">
+    <dxi-item location="center" text="trowoo"></dxi-item>
+    <dxi-item location="after" widget="dxButton" [options]="userButtonOptions"></dxi-item>
+  </dx-toolbar>
+</header>
