@@ -6,6 +6,7 @@ import { OKTA_CONFIG, OktaAuthModule, OktaAuthService } from '@okta/okta-angular
 import { DxMenuModule, DxNavBarModule } from 'devextreme-angular';
 
 import appConfig from '../config/okta.config';
+import { AuthService } from './auth/auth.service';
 import { HeaderComponent } from './header/header.component';
 
 const oktaConfig = Object.assign({
@@ -28,6 +29,9 @@ const oktaConfig = Object.assign({
   exports: [
     HeaderComponent,
   ],
+  providers: [
+    AuthService,
+  ],
 })
 export class CoreModule {
   static forChild(): ModuleWithProviders {
@@ -38,12 +42,4 @@ export class CoreModule {
       ],
     };
   }
-
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: CoreModule,
-      providers: []
-    };
-  }
-
 }
