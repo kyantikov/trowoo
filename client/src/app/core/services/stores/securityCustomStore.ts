@@ -2,13 +2,10 @@ import { HttpClient } from '@angular/common/http';
 
 import CustomStore from 'devextreme/data/custom_store';
 
-import { HighPrice, LowPrice, Portfolio, Quote, Security, TrailingStop } from '../../../shared/models/trowoo';
-
-
-interface TrowooData extends Security, Quote, Position, Portfolio, HighPrice, LowPrice, TrailingStop { }
+import { Security } from '../../../shared/models/trowoo';
 
 export default class SecurityCustomStore extends CustomStore {
-  private loadedData: TrowooData[];
+  private loadedData: Security[];
 
   constructor(private url: string, private http: HttpClient) {
     super({
@@ -24,13 +21,9 @@ export default class SecurityCustomStore extends CustomStore {
       insert: values => {
         return this.http.post(this.url, values).toPromise();
       },
-      // TODO: fix 'e.id' error below ----> fixed with interface above:: is this correct??
       update: (key, values) => {
-        // console.log(values);
-        const matchedEntity = this.loadedData.filter(e => e.id === key)[0];
-        // console.log(matchedEntity);
-        const updatedSecurity = {...matchedEntity, ...values};
-        // console.log(updatedSecurity);
+        const matchedSecurity = this.loadedData.filter(e => e.id === key)[0];
+        const updatedSecurity = {...matchedSecurity, ...values};
         return this.http.put(this.url, updatedSecurity).toPromise();
       },
       remove: key => {
