@@ -7,7 +7,7 @@ import { HighPrice, LowPrice, Portfolio, Quote, Security, TrailingStop } from '.
 
 interface TrowooData extends Security, Quote, Position, Portfolio, HighPrice, LowPrice, TrailingStop { }
 
-export default class TrowooCustomStore extends CustomStore {
+export default class SecurityCustomStore extends CustomStore {
   private loadedData: TrowooData[];
 
   constructor(private url: string, private http: HttpClient) {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import CustomStore from 'devextreme/data/custom_store';
 
-import TrowooCustomStore from '../../shared/models/trowooCustomStore';
+import SecurityCustomStore from '../../shared/models/securityCustomStore';
 import { Security } from '../../shared/models/trowoo';
 import { PublicURLs } from '../../shared/models/public-urls.enum';
 
@@ -16,7 +16,7 @@ export class SecurityService {
   private url = 'https://localhost:5001/' + PublicURLs.security;
 
   constructor(private http: HttpClient) {
-    this.store = new TrowooCustomStore(this.url, this.http);
+    this.store = new SecurityCustomStore(this.url, this.http);
   }
 
 }
