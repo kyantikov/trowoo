@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import CustomStore from 'devextreme/data/custom_store';
 
-import SecurityCustomStore from '../../shared/models/securityCustomStore';
+import SecurityCustomStore from './stores/securityCustomStore';
 import { Security } from '../../shared/models/trowoo';
 import { PublicURLs } from '../../shared/models/public-urls.enum';
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 
 import CustomStore from 'devextreme/data/custom_store';
 
-import { HighPrice, LowPrice, Portfolio, Quote, Security, TrailingStop } from './trowoo';
+import { HighPrice, LowPrice, Portfolio, Quote, Security, TrailingStop } from '../../../shared/models/trowoo';
 
 
 interface TrowooData extends Security, Quote, Position, Portfolio, HighPrice, LowPrice, TrailingStop { }
