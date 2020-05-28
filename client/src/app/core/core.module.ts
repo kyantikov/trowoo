@@ -1,24 +1,20 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OKTA_CONFIG, OktaAuthModule, OktaAuthService } from '@okta/okta-angular' ;
+import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular' ;
 
 import { DxToolbarModule } from 'devextreme-angular';
 
 import appConfig from '../config/okta.config';
 import { AuthService } from './auth/auth.service';
 import { HeaderComponent } from './header/header.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
-const oktaConfig = Object.assign({
-  onAuthRequired: ({oktaAuth, router}) => {
-    // Redirect the user to your custom login page
-    router.navigate(['/login']);
-  }
-}, appConfig);
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    SideNavComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +23,7 @@ const oktaConfig = Object.assign({
   ],
   exports: [
     HeaderComponent,
+    SideNavComponent,
   ],
   providers: [
     AuthService,
@@ -37,7 +34,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        {provide: OKTA_CONFIG, useValue: oktaConfig}
+        { provide: OKTA_CONFIG, useValue: appConfig },
       ],
     };
   }
