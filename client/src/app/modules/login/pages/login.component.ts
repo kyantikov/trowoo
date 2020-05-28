@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       {el: '#okta-signin-container'},
       (res) => {
         if (res.status === 'SUCCESS') {
-          this.oktaAuthService.loginRedirect('/dashboard');
+          this.oktaAuthService.loginRedirect('/');
           this.widget.hide();
         }
       },

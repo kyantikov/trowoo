@@ -14,7 +14,10 @@ export class AuthService {
   public $isLoggedIn: Observable<boolean>;
   public $user = this.userSubject.asObservable();
 
-  constructor(private oktaAuthService: OktaAuthService) {
+  constructor(private oktaAuthService: OktaAuthService) { }
+
+  async getAuthState() {
+    return await this.oktaAuthService.isAuthenticated();
   }
 
   async autoLogin() {
