@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 
 import { OktaAuthService } from '@okta/okta-angular';
 
 import { AuthServiceExtensions } from './auth.service.extensions';
 import { User } from '../../shared/models/user.model';
 
+
 @Injectable()
 export class AuthService {
   private userSubject = new BehaviorSubject<User>(null);
 
-  public $isLoggedIn: Observable<boolean>;
+  public authenticationState$: Observable<boolean>;
   public $user = this.userSubject.asObservable();
 
-  constructor(private oktaAuthService: OktaAuthService) { }
+  constructor(private oktaAuthService: OktaAuthService) {
+    this.updateAuthStateObservable();
+  }
 
   async getAuthState() {
     return await this.oktaAuthService.isAuthenticated();
+  }
+
+  private updateAuthStateObservable() {
+    return this.authenticationState$ = from(this.getAuthState());
   }
 
   async autoLogin() {
