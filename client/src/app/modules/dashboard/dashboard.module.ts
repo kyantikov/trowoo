@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DxDataGridModule } from 'devextreme-angular';
-import { DxResponsiveBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule, DxToolbarModule } from 'devextreme-angular';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './pages/dashboard.component';
@@ -18,7 +17,11 @@ import { DataGridComponent } from './components/data-grid/data-grid.component';
     CommonModule,
     DashboardRoutingModule,
     DxDataGridModule,
-    DxResponsiveBoxModule,
-  ]
+    DxButtonModule,
+    DxToolbarModule,
+  ],
+  exports: [
+    DashboardComponent,
+  ],
 })
 export class DashboardModule { }

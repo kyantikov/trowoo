@@ -1,1 +1,21 @@
-<p>side-nav works!</p>
+<dx-toolbar id="toolbar">
+  <dxi-item location="before" widget="dxButton" [options]="buttonOptions"></dxi-item>
+</dx-toolbar>
+<dx-drawer
+  template="template"
+  revealMode="slide"
+  [height]="250"
+  [minSize]="37"
+  [(opened)]="isDrawerOpen">
+  <div *dxTemplate="let data of 'template'">
+    <dx-list
+      [items]="navigation"
+      [width]="200"
+      selectionMode="single"
+      (onSelectionChanged)="loadView($event)">
+    </dx-list>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</dx-drawer>
