@@ -1,10 +1,10 @@
 <app-header></app-header>
-<ng-container *ngIf="(isAuthenticated$ | async)">
+<ng-container *ngIf="isAuthenticated$; else notAuthorized">
   <app-side-nav>
     <router-outlet></router-outlet>
   </app-side-nav>
 </ng-container>
 
-<ng-container *ngIf="!(isAuthenticated$ | async)">
+<ng-template #notAuthorized>
   <router-outlet></router-outlet>
-</ng-container>
+</ng-template>

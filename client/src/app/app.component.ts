@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from './core/auth/auth.service';
 
@@ -9,17 +7,15 @@ import { AuthService } from './core/auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'trowoo';
-  public isAuthenticated$: Observable<boolean>;
+export class AppComponent implements OnInit {
+  public title = 'trowoo';
 
-  constructor(private authService: AuthService) {
+  public isAuthenticated$: boolean;
+
+  constructor(private authService: AuthService) {}
+
+  async ngOnInit(): Promise<void> {
+    this.authService.getAuthState().then(state => this.isAuthenticated$ = state);
   }
 
-  ngOnInit(): void {
-    this.isAuthenticated$ = this.authService.authenticationState$;
-  }
-
-  ngOnDestroy(): void {
-  }
 }
