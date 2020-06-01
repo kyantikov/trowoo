@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -12,7 +11,10 @@ import { AuthService } from '../auth/auth.service';
 export class HeaderComponent implements OnInit {
   private userButtonOptions: any;
 
-  constructor(private router: Router, private authService: AuthService) {
+  @Input()
+  public isAuth: boolean;
+
+  constructor(private authService: AuthService) {
     this.userButtonOptions = {
       icon: 'arrowup',
       onClick: () => {
@@ -21,7 +23,7 @@ export class HeaderComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }
