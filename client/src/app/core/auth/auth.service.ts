@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, from, Observable } from 'rxjs';
+import {from, Observable} from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { OktaAuthService } from '@okta/okta-angular';
 
@@ -10,46 +11,21 @@ import { User } from '../../shared/models/user.model';
 
 @Injectable()
 export class AuthService {
-  private userSubject = new BehaviorSubject<User>(null);
-
-  public authenticationState$: Observable<boolean>;
-  public $user = this.userSubject.asObservable();
+  public user$: Observable<User>;
 
   constructor(private oktaAuthService: OktaAuthService) {
-    this.updateAuthStateObservable();
+    this.user$ = this.oktaAuthService.$authenticationState
+      .pipe(
+        switchMap(state => state ? this.oktaAuthService.getUser() : null),
+        map(user => AuthServiceExtensions.parseUserClaims(user)),
+      );
+  }
+
+  logout(url: string) {
+    this.oktaAuthService.logout(url);
   }
 
   async getAuthState() {
     return await this.oktaAuthService.isAuthenticated();
   }
-
-  private updateAuthStateObservable() {
-    return this.authenticationState$ = from(this.getAuthState());
-  }
-
-  async autoLogin() {
-    const accessToken = await this.oktaAuthService.getAccessToken();
-    if (accessToken) {
-      await this.createUserSubjectFromOktaUserClaims();
-      return true;
-    }
-    return false;
-  }
-
-  private async createUserSubjectFromOktaUserClaims() {
-    const oktaUserInfo = await this.oktaAuthService.getUser();
-    if (oktaUserInfo) {
-      const parsedUserObject = AuthServiceExtensions.parseUserClaims(oktaUserInfo);
-      this.updateUserSubject(parsedUserObject);
-    }
-  }
-
-  private updateUserSubject(userObj: User): void {
-    this.userSubject.next(userObj);
-  }
-
-  private nullifyUserBehaviorSubject(): void {
-    this.userSubject.next(null);
-  }
-
 }
