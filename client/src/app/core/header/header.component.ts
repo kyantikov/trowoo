@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../auth/auth.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,29 +10,18 @@ import { Router } from '@angular/router';
 })
 
 export class HeaderComponent implements OnInit {
-  userButtonOptions: any;
+  private userButtonOptions: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.userButtonOptions = {
-      icon: 'user',
+      icon: 'arrowup',
       onClick: () => {
-        console.log('did something');
+        this.authService.logout('/login');
       }
     };
   }
 
-
   ngOnInit() {
   }
-
-  onTabChange(e) {
-    const path = e.itemData.text.toLowerCase();
-    this.redirectToPath(path);
-  }
-
-  redirectToPath(path: string) {
-    this.router.navigate([path]);
-  }
-
 
 }
