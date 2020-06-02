@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {from, Observable} from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { OktaAuthService } from '@okta/okta-angular';
@@ -21,11 +21,15 @@ export class AuthService {
       );
   }
 
-  logout(url: string) {
-    this.oktaAuthService.logout(url);
+  getAccessToken() {
+    return from(this.oktaAuthService.getAccessToken());
   }
 
   async getAuthState() {
     return await this.oktaAuthService.isAuthenticated();
+  }
+
+  logout(url: string) {
+    this.oktaAuthService.logout(url);
   }
 }
