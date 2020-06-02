@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth/auth.service';
@@ -9,28 +9,26 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent implements OnInit {
- buttonOptions: any;
-  isDrawerOpen: boolean;
   navigation: any;
+
+  @Input()
+  public isDrawerOpen: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
     this.navigation = [
       { id: 1, text: 'Portfolios', icon: 'folder', filePath: '/portfolios' },
+      { id: 2, text: 'home', icon: 'folder', filePath: '/' },
     ];
-    this.buttonOptions = {
-      icon: 'menu',
-      onClick: () => {
-        this.isDrawerOpen = !this.isDrawerOpen;
-      }
-    };
   }
 
   ngOnInit() {
   }
 
+  // TODO: fix bug here where when clicking a nav item in drawer,
+  //  it closes drawer but this updates value in this component, while the menu updates value in app.component
   loadView(e) {
     console.log(this.router.url);
-    this.router.navigate([this.router.url + e.addedItems[0].filePath]);
-    this.isDrawerOpen = false;
+    this.router.navigate([e.addedItems[0].filePath]);
+    this.isDrawerOpen = !this.isDrawerOpen;
   }
 }
