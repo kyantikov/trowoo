@@ -10,12 +10,18 @@ import { AuthService } from './core/auth/auth.service';
 export class AppComponent implements OnInit {
   public title = 'trowoo';
 
-  public isAuthenticated$: boolean;
+  public isAuthenticated: boolean;
+  public isDrawerOpen = false;
 
   constructor(private authService: AuthService) {}
 
   async ngOnInit(): Promise<void> {
-    this.authService.getAuthState().then(state => this.isAuthenticated$ = state);
+    this.authService.getAuthState().then(state => this.isAuthenticated = state);
+  }
+
+  receiveDrawerToggle(s: boolean) {
+    this.isDrawerOpen = !this.isDrawerOpen;
+    console.log(this.isDrawerOpen);
   }
 
 }

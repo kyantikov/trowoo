@@ -1,6 +1,7 @@
-<app-header></app-header>
-<ng-container *ngIf="isAuthenticated$; else notAuthorized">
-  <app-side-nav>
+<app-header (drawerToggle)="receiveDrawerToggle($event)" [isAuth]="isAuthenticated"></app-header>
+
+<ng-container *ngIf="isAuthenticated; else notAuthorized">
+  <app-side-nav [isDrawerOpen]="isDrawerOpen">
     <router-outlet></router-outlet>
   </app-side-nav>
 </ng-container>
