@@ -1,6 +1,9 @@
 <header>
   <dx-toolbar height="80px">
+    <ng-container *ngIf="isAuth">
+      <dxi-item [options]="menuButtonOptions" location="before" widget="dxButton"></dxi-item>
+      <dxi-item [options]="userButtonOptions" location="after" widget="dxButton"></dxi-item>
+    </ng-container>
     <dxi-item location="center" text="trowoo"></dxi-item>
-    <dxi-item *ngIf="isAuth" [options]="userButtonOptions" location="after" widget="dxButton"></dxi-item>
   </dx-toolbar>
 </header>
