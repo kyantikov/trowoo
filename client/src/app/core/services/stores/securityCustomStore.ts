@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import CustomStore from 'devextreme/data/custom_store';
 
 import { Security } from '../../../shared/models/trowoo';
+import { PublicURLs } from '../../../shared/models/public-urls.enum';
 
 export default class SecurityCustomStore extends CustomStore {
   private loadedData: Security[];
+    private url = 'https://localhost:5001/' + PublicURLs.security;
 
-  constructor(private url: string, private http: HttpClient) {
+  constructor(private http: HttpClient) {
     super({
       key: 'id',
       load: () => {
