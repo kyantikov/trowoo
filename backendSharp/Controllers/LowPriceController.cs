@@ -78,8 +78,8 @@ namespace Trowoo.Controllers
         /// <para>Returns 404 if the LowPrice does not exist.</para>
         /// <para>Returns 404 if the LowPrice failed model validations and was not upated and saved.</para>
         /// </returns>
-        [HttpPut]
-        public ActionResult<LowPrice> Update([FromBody] int id, [FromBody] decimal price)
+        [HttpPut("id:int")]
+        public ActionResult<LowPrice> Update([FromRoute] int id, [FromBody] decimal price)
         {
             var lowPrice = LowPriceService.Update(id, price);
             if(lowPrice == null)

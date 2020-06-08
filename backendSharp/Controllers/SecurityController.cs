@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Trowoo.Models;
 using Trowoo.Services;
@@ -16,6 +17,7 @@ namespace Trowoo.Controllers
     /// <remarks>
     /// <para>This class contains methods which are similarlly named in SecurityService.</para>
     /// </remarks>
+    [Authorize]
     [ApiController]
     [Route("security")]
     public class SecurityController : ControllerBase
