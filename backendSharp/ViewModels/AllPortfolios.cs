@@ -7,6 +7,5 @@ namespace Trowoo.ViewModels
         public int PortfolioId {get; set;}
         public string PortfolioName {get; set;}
         public Position Position {get; set;}
-        // public PositionPerformanceMetrics {get; set;}
     }
 }
