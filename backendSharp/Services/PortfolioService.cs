@@ -77,6 +77,8 @@ namespace Trowoo.Services
                     .ThenInclude(p => p.LowPrice)
                 .Include(p => p.Positions)
                     .ThenInclude(p => p.HighPrice)
+                .Include(p => p.Positions)
+                    .ThenInclude(p => p.PositionPerformanceMetrics)
                 .ToList();
         }
 
