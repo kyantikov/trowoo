@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using Trowoo.Models;
+using Trowoo.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -76,6 +77,22 @@ namespace Trowoo.Services
                     .ThenInclude(p => p.LowPrice)
                 .Include(p => p.Positions)
                     .ThenInclude(p => p.HighPrice)
+                .ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<AllPortfolios> GetAllPortfoliosGridComponentData(string userId)
+        {
+            return GetUserPortfolios(userId)
+                .SelectMany(portfolio => portfolio.Positions.DefaultIfEmpty().Select(position => new AllPortfolios(){
+                    PortfolioId = portfolio.Id,
+                    PortfolioName = portfolio.Name,
+                    Position = position,
+                }))
                 .ToList();
         }
 

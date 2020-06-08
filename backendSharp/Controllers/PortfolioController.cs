@@ -5,8 +5,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
-using Trowoo.Models;
 using Trowoo.Services;
+using Trowoo.Models;
+using Trowoo.ViewModels;
 
 namespace Trowoo.Controllers
 {
@@ -67,6 +68,16 @@ namespace Trowoo.Controllers
         {
             return PortfolioService.GetUserPortfolios(User.GetId());
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("allportfolios")]
+        public ActionResult<List<AllPortfolios>> GetAllPortfoliosGridComponentData()
+        {
+            return PortfolioService.GetAllPortfoliosGridComponentData(User.GetId());
+        }
 
         /// <summary>
         /// POST request to create Portfolio for a user.
@@ -97,8 +108,8 @@ namespace Trowoo.Controllers
         /// <para>Returns 404 if a Portfolio with specified id does not exist.</para>
         /// <para>Returns 404 if updating the Portfolio to new values fails the model validations.</para>
         /// </returns>
-        [HttpPut]
-        public ActionResult<Portfolio> Update([FromBody] int id ,[FromBody] string name)
+        [HttpPut("id:int")]
+        public ActionResult<Portfolio> Update([FromRoute] int id ,[FromBody] string name)
         {
             var portfolio = PortfolioService.Update(id, name, User.GetId());
             if(portfolio == null)
