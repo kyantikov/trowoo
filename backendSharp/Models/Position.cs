@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Trowoo.ViewModels;
 
 namespace Trowoo.Models
 {
@@ -15,5 +16,6 @@ namespace Trowoo.Models
         public TrailingStop TrailingStop {get; set;}
         public LowPrice LowPrice {get; set;}
         public HighPrice HighPrice {get; set;}
+        public PositionPerformanceMetrics PositionPerformanceMetrics {get; set;}
     }
 }
