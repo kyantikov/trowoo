@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './modules/login/login.module';
+import { AllPortfoliosGridModule } from './modules/all-portfolios-grid/all-portfolios-grid.module';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptorService } from './core/auth/auth-interceptor.service';
@@ -23,6 +24,7 @@ import { AuthInterceptorService } from './core/auth/auth-interceptor.service';
     CoreModule,
     SharedModule,
     LoginModule,
+    AllPortfoliosGridModule,
     DxResponsiveBoxModule,
   ],
   providers: [
