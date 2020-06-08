@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -9,8 +9,6 @@ import { AuthService } from '../auth/auth.service';
 })
 
 export class HeaderComponent implements OnInit {
-  userButtonOptions: any;
-  menuButtonOptions: any;
 
   @Input()
   public isAuth: boolean;
@@ -18,19 +16,17 @@ export class HeaderComponent implements OnInit {
   @Output()
   public drawerToggle = new EventEmitter<boolean>();
 
-  constructor(private authService: AuthService) {
-    this.userButtonOptions = {
-      icon: 'arrowup',
-      onClick: () => this.authService.logout('/login')
-    };
-    this.menuButtonOptions = {
-      icon: 'menu',
-      onClick: () => this.drawerToggle.emit(true)
-    };
-
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
   }
 
+  onDrawerToggle(e) {
+    // console.log(e);
+    this.drawerToggle.emit(e);
+  }
+
+  onLogout() {
+    this.authService.logout('/login');
+  }
 }
