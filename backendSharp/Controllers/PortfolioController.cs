@@ -17,6 +17,7 @@ namespace Trowoo.Controllers
     /// All methods return an HTTP Response.
     /// </summary>
     /// <remarks>
+    /// <para>Protected via Authorize attribute: REQUIRES Auth token to be accessed.</para>
     /// <para>This class contains methods which are similarlly named in PortfolioService.</para>
     /// </remarks>
     
@@ -59,9 +60,8 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// GET request to retrieve all Securities for a user.
+        /// GET request to retrieve all Portfolios for a user.
         /// </summary>
-        /// <param name="userId">User Id; passed through body.</param>
         /// <returns>List of Portfolios for a user.</returns>
         [HttpGet]
         public ActionResult<List<Portfolio>> GetUserPortfolios()
@@ -70,9 +70,9 @@ namespace Trowoo.Controllers
         }
         
         /// <summary>
-        /// 
+        /// GET request to retrieve version of all Portfolios for a user that is formatted for display on the front end.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of AllPortfolios for a user.</returns>
         [HttpGet("allportfolios")]
         public ActionResult<List<AllPortfolios>> GetAllPortfoliosGridComponentData()
         {
