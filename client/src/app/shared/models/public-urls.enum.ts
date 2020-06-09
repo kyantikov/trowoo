@@ -1,6 +1,7 @@
 export const enum PublicURLs {
   security = 'security/',
   position = 'position/',
-  portfolio = 'portfolio/',
+  portfolios = 'portfolio/',
+  allPortfolios = 'portfolio/allportfolios',
   quote = 'quote/',
 }
