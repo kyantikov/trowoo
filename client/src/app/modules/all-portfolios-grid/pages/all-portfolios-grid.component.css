@@ -1,3 +1,8 @@
-
+#portfolioGrid .positive-change {
+  color: #2bb71b;
+}
+#portfolioGrid .negative-change {
+  color: #f00;
+}
 
 /*# sourceMappingURL=all-portfolios-grid.component.css.map */
