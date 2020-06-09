@@ -1,1 +1,11 @@
-<p>all-portfolios-grid works!</p>
+<dx-data-grid
+  [dataSource]="portfolioData">
+
+  <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false"></dxo-editing>
+
+  <dxi-column dataField="id" type="number" [allowEditing]="false" [visible]="false"></dxi-column>
+  <dxi-column caption="Portfolio" dataField="name" dataType="string"></dxi-column>
+  <dxi-column caption="Position" dataField="positions" dataType="string"></dxi-column>
+
+
+</dx-data-grid>
