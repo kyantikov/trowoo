@@ -5,3 +5,5 @@ export * from './portfolio';
 export * from './highPrice';
 export * from './lowPrice';
 export * from './trailingStop';
+export * from './positionPerformanceMetrics';
+export * from './allPortfolios';

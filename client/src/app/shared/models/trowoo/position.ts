@@ -2,6 +2,7 @@ import { Security } from './security';
 import { TrailingStop } from './trailingStop';
 import { LowPrice } from './lowPrice';
 import { HighPrice } from './highPrice';
+import { PositionPerformanceMetrics } from './positionPerformanceMetrics';
 
 export interface Position {
   id: number;
@@ -11,4 +12,5 @@ export interface Position {
   trailingStop?: TrailingStop;
   lowPrice?: LowPrice;
   highPrice?: HighPrice;
+  positionPerformanceMetrics?: PositionPerformanceMetrics;
 }
