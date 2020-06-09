@@ -16,21 +16,96 @@
   </dxi-column>
 
   <dxi-column caption="Performance (% Change)" [isBand]="true" alignment="center">
-    <dxi-column caption="1D" dataField="position.positionPerformanceMetrics.oneDayChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="7D" dataField="position.positionPerformanceMetrics.sevenDayChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="1M" dataField="position.positionPerformanceMetrics.oneMonthChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="3M" dataField="position.positionPerformanceMetrics.threeMonthChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="6M" dataField="position.positionPerformanceMetrics.sixMonthChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="9M" dataField="position.positionPerformanceMetrics.nineMonthChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="1Y" dataField="position.positionPerformanceMetrics.oneYearChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="2Y" dataField="position.positionPerformanceMetrics.twoYearChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="3Y" dataField="position.positionPerformanceMetrics.threeYearChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="5Y" dataField="position.positionPerformanceMetrics.fiveYearChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="10Y" dataField="position.positionPerformanceMetrics.tenYearChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="MTD" dataField="position.positionPerformanceMetrics.monthToDateChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="QTD" dataField="position.positionPerformanceMetrics.quarterToDateChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="YTD" dataField="position.positionPerformanceMetrics.yearToDateChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
-    <dxi-column caption="ITD" dataField="position.positionPerformanceMetrics.inceptionToDateChange" dataType="number" cellTemplate="performanceCell"></dxi-column>
+    <dxi-column
+      caption="1D"
+      dataField="position.positionPerformanceMetrics.oneDayChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="7D"
+      dataField="position.positionPerformanceMetrics.sevenDayChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="1M"
+      dataField="position.positionPerformanceMetrics.oneMonthChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="3M"
+      dataField="position.positionPerformanceMetrics.threeMonthChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="6M"
+      dataField="position.positionPerformanceMetrics.sixMonthChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="9M"
+      dataField="position.positionPerformanceMetrics.nineMonthChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="1Y"
+      dataField="position.positionPerformanceMetrics.oneYearChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="2Y"
+      dataField="position.positionPerformanceMetrics.twoYearChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="3Y"
+      dataField="position.positionPerformanceMetrics.threeYearChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="5Y"
+      dataField="position.positionPerformanceMetrics.fiveYearChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="10Y"
+      dataField="position.positionPerformanceMetrics.tenYearChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="MTD"
+      dataField="position.positionPerformanceMetrics.monthToDateChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="QTD"
+      dataField="position.positionPerformanceMetrics.quarterToDateChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="YTD"
+      dataField="position.positionPerformanceMetrics.yearToDateChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
+    <dxi-column
+      caption="ITD"
+      dataField="position.positionPerformanceMetrics.inceptionToDateChange"
+      cellTemplate="performanceCell"
+      dataType="number"
+      format="decimal"></dxi-column>
 
     <div *dxTemplate="let d of 'performanceCell'" [class]="d.value > 0 ? 'positive-change' : 'negative-change'">{{d.value}}</div>
   </dxi-column>
