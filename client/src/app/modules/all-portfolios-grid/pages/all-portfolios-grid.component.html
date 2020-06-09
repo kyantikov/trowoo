@@ -2,10 +2,49 @@
   [dataSource]="portfolioData">
 
   <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false"></dxo-editing>
+  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
 
-  <dxi-column dataField="id" type="number" [allowEditing]="false" [visible]="false"></dxi-column>
-  <dxi-column caption="Portfolio" dataField="name" dataType="string"></dxi-column>
-  <dxi-column caption="Position" dataField="positions" dataType="string"></dxi-column>
+  <dxi-column caption="Portfolio" dataField="portfolioName" dataType="string" [groupIndex]="0"></dxi-column>
+  <dxi-column dataField="id" dataType="number" [allowEditing]="false" [visible]="false"></dxi-column>
 
+  <dxi-column caption="Position" [isBand]="true" alignment="center">
+    <dxi-column caption="Ticker" dataField="position.security.ticker" dataType="string"></dxi-column>
+    <dxi-column caption="Name" dataField="position.security.name" dataType="string"></dxi-column>
+    <dxi-column caption="Opened On" dataField="position.openedDate" dataType="datetime"></dxi-column>
+    <dxi-column caption="Cost" dataField="position.cost" dataType="number" format="currency"></dxi-column>
+  </dxi-column>
+  
+  <dxi-column caption="Performance (% Change)" [isBand]="true" alignment="center">
+    <dxi-column caption="1D" dataField="position.positionPerformanceMetrics.oneDayChange" dataType="number"></dxi-column>
+    <dxi-column caption="7D" dataField="position.positionPerformanceMetrics.sevenDayChange" dataType="number"></dxi-column>
+    <dxi-column caption="1M" dataField="position.positionPerformanceMetrics.oneMonthChange" dataType="number"></dxi-column>
+    <dxi-column caption="3M" dataField="position.positionPerformanceMetrics.threeMonthChange" dataType="number"></dxi-column>
+    <dxi-column caption="6M" dataField="position.positionPerformanceMetrics.sixMonthChange" dataType="number"></dxi-column>
+    <dxi-column caption="9M" dataField="position.positionPerformanceMetrics.nineMonthChange" dataType="number"></dxi-column>
+    <dxi-column caption="1Y" dataField="position.positionPerformanceMetrics.oneYearChange" dataType="number"></dxi-column>
+    <dxi-column caption="2Y" dataField="position.positionPerformanceMetrics.twoYearChange" dataType="number"></dxi-column>
+    <dxi-column caption="3Y" dataField="position.positionPerformanceMetrics.threeYearChange" dataType="number"></dxi-column>
+    <dxi-column caption="5Y" dataField="position.positionPerformanceMetrics.fiveYearChange" dataType="number"></dxi-column>
+    <dxi-column caption="10Y" dataField="position.positionPerformanceMetrics.tenYearChange" dataType="number"></dxi-column>
+    <dxi-column caption="MTD" dataField="position.positionPerformanceMetrics.monthToDateChange" dataType="number"></dxi-column>
+    <dxi-column caption="QTD" dataField="position.positionPerformanceMetrics.quarterToDateChange" dataType="number"></dxi-column>
+    <dxi-column caption="YTD" dataField="position.positionPerformanceMetrics.yearToDateChange" dataType="number"></dxi-column>
+    <dxi-column caption="ITD" dataField="position.positionPerformanceMetrics.inceptionToDateChange" dataType="number"></dxi-column>
+  </dxi-column>
+
+  <dxi-column caption="Trailing Stop" [isBand]="true" alignment="center">
+    <dxi-column caption="%" dataField="position.trailingStop.percent" dataType=""></dxi-column>
+    <dxi-column caption="Peak Price" dataField="" dataType=""></dxi-column>
+    <dxi-column caption="Stop Price" dataField="" dataType=""></dxi-column>
+    <dxi-column caption="% from Peak" dataField="" dataType=""></dxi-column>
+    <dxi-column caption="Triggered?" dataField="" dataType=""></dxi-column>
+  </dxi-column>
+
+  <dxi-column caption="Target Price" [isBand]="true" alignment="center">
+    <dxi-column caption="High" dataField="position.highPrice.price" dataType=""></dxi-column>
+    <dxi-column caption="Triggered?" dataField="" dataType=""></dxi-column>
+    <dxi-column caption="Low" dataField="position.lowPrice.price" dataType=""></dxi-column>
+    <dxi-column caption="Triggered?" dataField="" dataType=""></dxi-column>
+  </dxi-column>
 
 </dx-data-grid>
