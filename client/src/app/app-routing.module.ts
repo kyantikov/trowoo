@@ -6,7 +6,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'portfolios',
+    redirectTo: 'positions',
     pathMatch: 'full',
   },
   {
@@ -15,9 +15,9 @@ const routes: Routes = [
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
   {
-    path: 'portfolios',
+    path: 'positions',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/all-portfolios-grid/all-portfolios-grid.module').then(m => m.AllPortfoliosGridModule)
+    loadChildren: () => import('./modules/all-positions-grid/all-positions-grid.module').then(m => m.AllPositionsGridModule)
   },
 ];
 
