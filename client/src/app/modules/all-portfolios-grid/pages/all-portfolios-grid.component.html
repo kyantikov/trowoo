@@ -145,39 +145,39 @@
 
   <dxi-column caption="Trailing Stop" [isBand]="true" alignment="center">
     <dxi-column caption="%" dataField="position.trailingStop.percent" dataType=""></dxi-column>
-    <dxi-column caption="Peak Price" dataField="" dataType=""></dxi-column>
-    <dxi-column caption="Stop Price" dataField="" dataType=""></dxi-column>
-    <dxi-column caption="% from Peak" dataField="" dataType=""></dxi-column>
+    <dxi-column caption="Peak Price" dataField="" dataType="number"></dxi-column>
+    <dxi-column caption="Stop Price" dataField="" dataType="number"></dxi-column>
+    <dxi-column caption="% from Peak" dataField="" dataType="number"></dxi-column>
     <dxi-column
       caption="Triggered?"
       dataField=""
       [width]="50"
-      dataType=""></dxi-column>
+      dataType="boolean"></dxi-column>
   </dxi-column>
 
   <dxi-column caption="Target Price" [isBand]="true" alignment="center">
     <dxi-column
       caption="High"
       dataField="position.highPrice.price"
-      dataType="">
+      dataType="number">
       <dxo-format type="currency" precision="2" currency="USD"></dxo-format>
     </dxi-column>
     <dxi-column
       caption="Triggered?"
       dataField=""
       [width]="50"
-      dataType=""></dxi-column>
+      dataType="boolean"></dxi-column>
     <dxi-column
       caption="Low"
       dataField="position.lowPrice.price"
-      dataType="">
+      dataType="number">
       <dxo-format type="currency" precision="2" currency="USD"></dxo-format>
     </dxi-column>
     <dxi-column
       caption="Triggered?"
       dataField=""
       [width]="50"
-      dataType=""></dxi-column>
+      dataType="boolean"></dxi-column>
   </dxi-column>
 
 </dx-data-grid>
