@@ -73,10 +73,10 @@ namespace Trowoo.Controllers
         /// GET request to retrieve version of all Portfolios for a user that is formatted for display on the front end.
         /// </summary>
         /// <returns>List of AllPortfolios for a user.</returns>
-        [HttpGet("allportfolios")]
-        public ActionResult<List<AllPortfolios>> GetAllPortfoliosGridComponentData()
+        [HttpGet("allpositions")]
+        public ActionResult<List<AllPortfolios>> GetAllPositionsGridComponentData()
         {
-            return PortfolioService.GetAllPortfoliosGridComponentData(User.GetId());
+            return PortfolioService.GetAllPositionsGridComponentData(User.GetId());
         }
 
         /// <summary>

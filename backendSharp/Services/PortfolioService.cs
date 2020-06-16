@@ -12,7 +12,7 @@ namespace Trowoo.Services
     /// </summary>
     /// <remarks>
     /// <para>This class has the following methods:</para>
-    /// <para>GetById, GetUserPortfolios, GetAllPortfoliosGridComponentData, Create, Update, Delete</para>
+    /// <para>GetById, GetUserPortfolios, GetAllPositionsGridComponentData, Create, Update, Delete</para>
     /// </remarks>
     public class PortfolioService
     {
@@ -87,7 +87,7 @@ namespace Trowoo.Services
         /// </summary>
         /// <param name="userId">User Id. A string</param>
         /// <returns>Flattened version of GetUserPortfolios in the form of List<AllPortfolios>.</returns>
-        public List<AllPortfolios> GetAllPortfoliosGridComponentData(string userId)
+        public List<AllPortfolios> GetAllPositionsGridComponentData(string userId)
         {
             return GetUserPortfolios(userId)
                 .SelectMany(portfolio => portfolio.Positions.DefaultIfEmpty().Select(position => new AllPortfolios(){
