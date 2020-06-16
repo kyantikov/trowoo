@@ -4,10 +4,10 @@ import { PortfolioService } from '../../../core/services/portfolio.service';
 
 @Component({
   selector: 'app-all-portfolios-grid',
-  templateUrl: './all-portfolios-grid.component.html',
-  styleUrls: ['./all-portfolios-grid.component.scss']
+  templateUrl: './all-positions-grid.component.html',
+  styleUrls: ['./all-positions-grid.component.scss']
 })
-export class AllPortfoliosGridComponent implements OnInit {
+export class AllPositionsGridComponent implements OnInit {
   portfolioData: any;
 
   constructor(private portfolioService: PortfolioService) { }

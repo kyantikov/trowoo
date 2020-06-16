@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AllPortfoliosGridComponent } from './pages/all-portfolios-grid.component';
+import { AllPositionsGridComponent } from './pages/all-positions-grid.component';
 
 const routes: Routes = [
-  { path: '', component: AllPortfoliosGridComponent },
+  { path: '', component: AllPositionsGridComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AllPortfoliosGridRoutingModule { }
+export class AllPositionsGridRoutingModule { }
