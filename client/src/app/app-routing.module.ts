@@ -24,6 +24,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./modules/all-positions-grid/all-positions-grid.module').then(m => m.AllPositionsGridModule)
   },
+  {
+    path: 'portfolios',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/portfolios-manager/portfolios-manager.module').then(m => m.PortfoliosManagerModule)
+  },
 ];
 
 @NgModule({
