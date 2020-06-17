@@ -31,15 +31,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
   ],
   providers: [
     AuthService,
+    { provide: OKTA_CONFIG, useValue: appConfig },
   ],
 })
-export class CoreModule {
-  static forChild(): ModuleWithProviders {
-    return {
-      ngModule: CoreModule,
-      providers: [
-        { provide: OKTA_CONFIG, useValue: appConfig },
-      ],
-    };
-  }
-}
+export class CoreModule { }
