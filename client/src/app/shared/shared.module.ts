@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { DxDataGridModule } from 'devextreme-angular';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   exports: [
-    CommonModule
+    CommonModule,
+    DxDataGridModule,
   ],
 })
 export class SharedModule { }
