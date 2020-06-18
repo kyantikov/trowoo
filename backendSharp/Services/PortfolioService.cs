@@ -97,10 +97,10 @@ namespace Trowoo.Services
         /// </summary>
         /// <param name="userId">User Id. A string</param>
         /// <returns>Flattened version of GetUserPortfolios in the form of List<AllPortfolios>.</returns>
-        public List<AllPortfolios> GetAllPositionsGridComponentData(string userId)
+        public List<AllPositions> GetAllPositionsGridComponentData(string userId)
         {
-            return GetUserPortfolios(userId)
-                .SelectMany(portfolio => portfolio.Positions.DefaultIfEmpty().Select(position => new AllPortfolios(){
+            return GetUserPortfoliosDetailed(userId)
+                .SelectMany(portfolio => portfolio.Positions.DefaultIfEmpty().Select(position => new AllPositions(){
                     PortfolioId = portfolio.Id,
                     PortfolioName = portfolio.Name,
                     Position = position,
