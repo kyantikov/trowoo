@@ -12,7 +12,7 @@ namespace Trowoo.Services
     /// </summary>
     /// <remarks>
     /// <para>This class has the following methods:</para>
-    /// <para>GetById, GetUserPortfolios, GetAllPositionsGridComponentData, Create, Update, Delete</para>
+    /// <para>GetById, GetUserPortfolios, GetUserPortfoliosDetailed, GetAllPositionsGridComponentData, Create, Update, Delete</para>
     /// </remarks>
     public class PortfolioService
     {
@@ -59,6 +59,16 @@ namespace Trowoo.Services
         }
 
         /// <summary>
+        /// Retrieves undetailed list of Portfolios for a specified userId.
+        /// </summary>
+        /// <param name="userId">User Id. A string.</param>
+        /// <returns>List of Portfolios.</returns>
+        public List<Portfolio> GetUserPortfolios(string userId)
+        {
+            return TrowooDbContext.Portfolios.Where(p => p.UserId == userId).ToList();
+        }
+
+        /// <summary>
         /// Retrieves all Portfolios for a specified userId.
         /// </summary>
         /// <param name="userId">User Id. A string.</param>
@@ -66,7 +76,7 @@ namespace Trowoo.Services
         /// <para>List of Portfolios.</para>
         /// <para>Eagerly loads Positions and all related entities w/i each Position.</para>
         /// </returns>
-        public List<Portfolio> GetUserPortfolios(string userId)
+        public List<Portfolio> GetUserPortfoliosDetailed(string userId)
         {
             return TrowooDbContext.Portfolios.Where(p => p.UserId == userId)
                 .Include(p => p.Positions)
@@ -120,7 +130,8 @@ namespace Trowoo.Services
         public Portfolio Update(int id, string name, string userId)
         {
             var portfolio = GetById(id);
-            if(portfolio == null || portfolio.UserId != userId){
+            if(portfolio == null || portfolio.UserId != userId)
+            {
                 return null;
             }
             portfolio.Name = name;
@@ -140,7 +151,8 @@ namespace Trowoo.Services
         public void Delete(int id, string userId)
         {
             var portfolio = GetById(id);
-            if(portfolio == null || portfolio.UserId != userId){
+            if(portfolio == null || portfolio.UserId != userId)
+            {
                 throw new EntityDoesNotExistException($"Portfolio with id: '{id}' does not exist");
             }
             TrowooDbContext.Portfolios.Remove(portfolio);

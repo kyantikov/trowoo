@@ -60,13 +60,23 @@ namespace Trowoo.Controllers
         }
 
         /// <summary>
-        /// GET request to retrieve all Portfolios for a user.
+        /// GET request to retrieve UNdetailed list of all Portfolios for a user.
         /// </summary>
         /// <returns>List of Portfolios for a user.</returns>
         [HttpGet]
         public ActionResult<List<Portfolio>> GetUserPortfolios()
         {
             return PortfolioService.GetUserPortfolios(User.GetId());
+        }
+
+        /// <summary>
+        /// GET request to retrieve detailed list of all Portfolios for a user.
+        /// </summary>
+        /// <returns>List of Portfolios for a user with all related entities.</returns>
+        [HttpGet("detailed")]
+        public ActionResult<List<Portfolio>> GetUserPortfoliosDetailed()
+        {
+            return PortfolioService.GetUserPortfoliosDetailed(User.GetId());
         }
         
         /// <summary>
