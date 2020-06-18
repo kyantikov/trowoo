@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PortfolioService } from '../../../core/services/portfolio.service';
+import { PositionService } from '../../../core/services/position.service';
 
 @Component({
   selector: 'app-all-portfolios-grid',
@@ -10,10 +10,10 @@ import { PortfolioService } from '../../../core/services/portfolio.service';
 export class AllPositionsGridComponent implements OnInit {
   portfolioData: any;
 
-  constructor(private portfolioService: PortfolioService) { }
+  constructor(private positionService: PositionService) { }
 
   ngOnInit() {
-    this.portfolioData = this.portfolioService.store;
+    this.portfolioData = this.positionService.store;
   }
 
 }
