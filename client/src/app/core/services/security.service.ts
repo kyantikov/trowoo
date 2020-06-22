@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import CustomStore from 'devextreme/data/custom_store';
 
-import SecurityCustomStore from './stores/securityCustomStore';
+import SecurityCustomStore from './stores/security.custom-store';
 
 @Injectable({
   providedIn: 'root'
