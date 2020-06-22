@@ -16,9 +16,13 @@ export class AuthService {
   constructor(private oktaAuthService: OktaAuthService) {
     this.user$ = this.oktaAuthService.$authenticationState
       .pipe(
-        switchMap(state => state ? this.oktaAuthService.getUser() : null),
+        switchMap(state => state ? this.oktaAuthService.getUser() : Promise.resolve(null)),
         map(user => AuthServiceExtensions.parseUserClaims(user)),
       );
+  }
+
+  async getUser(): Promise<User> {
+    return AuthServiceExtensions.parseUserClaims(await this.oktaAuthService.getUser());
   }
 
   getAccessToken() {
