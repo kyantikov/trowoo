@@ -15,13 +15,12 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit() {
     this.authService.getAuthState().then(state => this.isAuthenticated = state);
   }
 
-  receiveDrawerToggle(s: boolean) {
+  receiveDrawerToggle(e) {
     this.isDrawerOpen = !this.isDrawerOpen;
-    console.log(this.isDrawerOpen);
   }
 
 }

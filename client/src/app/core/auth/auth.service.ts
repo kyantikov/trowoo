@@ -11,15 +11,8 @@ import { User } from '../../shared/models/user.model';
 
 @Injectable()
 export class AuthService {
-  public user$: Observable<User>;
 
-  constructor(private oktaAuthService: OktaAuthService) {
-    this.user$ = this.oktaAuthService.$authenticationState
-      .pipe(
-        switchMap(state => state ? this.oktaAuthService.getUser() : Promise.resolve(null)),
-        map(user => AuthServiceExtensions.parseUserClaims(user)),
-      );
-  }
+  constructor(private oktaAuthService: OktaAuthService) {}
 
   async getUser(): Promise<User> {
     return AuthServiceExtensions.parseUserClaims(await this.oktaAuthService.getUser());
