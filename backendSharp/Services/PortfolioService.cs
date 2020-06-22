@@ -119,23 +119,21 @@ namespace Trowoo.Services
             TrowooDbContext.SaveChanges();
             return portfolio;
         }
-
+        
         /// <summary>
         /// Updates a Portfolio's name for a specified id.
         /// </summary>
-        /// <param name="id">Portfolio Id. An integer</param>
-        /// <param name="name">Updated name. A string.</param>
+        /// <param name="portfolio">Portfolio object with updated values.</param>
         /// <param name="userId">Okta-generated User Id. A string.</param>
         /// <returns>Updated Portfolio object.</returns>
-        public Portfolio Update(int id, string name, string userId)
+        public Portfolio Update(Portfolio portfolio, string userId)
         {
-            var portfolio = GetById(id);
-            if(portfolio == null || portfolio.UserId != userId)
+            var existingPortfolio = GetById(portfolio.Id);
+            if(existingPortfolio == null || existingPortfolio.UserId != userId)
             {
                 return null;
             }
-            portfolio.Name = name;
-            TrowooDbContext.Update(portfolio);
+            TrowooDbContext.Entry(existingPortfolio).CurrentValues.SetValues(portfolio);
             TrowooDbContext.SaveChanges();
             return portfolio;
         }

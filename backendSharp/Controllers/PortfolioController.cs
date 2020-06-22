@@ -111,17 +111,16 @@ namespace Trowoo.Controllers
         /// <summary>
         /// PUT request to update ONLY name of existing Portfolio.
         /// </summary>
-        /// <param name="id">Portfolio Id. An integer.</param>
-        /// <param name="name">Updated Portfolio name. A string. </param>
+        /// <param name="portfolio">Portfolio object with updated values.</param>
         /// <returns>
         /// <para>Returns 200 if the Portfolio was successfully validated and updated. Updated Portfolio object returned.</para>
         /// <para>Returns 404 if a Portfolio with specified id does not exist.</para>
         /// <para>Returns 404 if updating the Portfolio to new values fails the model validations.</para>
         /// </returns>
-        [HttpPut("id:int")]
-        public ActionResult<Portfolio> Update([FromRoute] int id ,[FromBody] string name)
+        [HttpPut]
+        public ActionResult<Portfolio> Update([FromBody] Portfolio portfolio)
         {
-            var portfolio = PortfolioService.Update(id, name, User.GetId());
+            portfolio = PortfolioService.Update(portfolio, User.GetId());
             if(portfolio == null)
             {
                 return NotFound();
