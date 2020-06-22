@@ -1,1 +1,9 @@
-<p>portfolios-manager works!</p>
+<dx-data-grid
+  [dataSource]="portfolioData"
+  [width]="400">
+
+  <dxo-editing [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+
+  <dxi-column dataField="id" dataType="number" [allowEditing]="false" [visible]="false"></dxi-column>
+  <dxi-column caption="Portfolio Name" dataField="name" dataType="string"></dxi-column>
+</dx-data-grid>

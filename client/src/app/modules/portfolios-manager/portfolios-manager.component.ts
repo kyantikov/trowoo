@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PortfolioService} from '../../core/services/portfolio.service';
 
 @Component({
   selector: 'app-portfolios-manager',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolios-manager.component.scss']
 })
 export class PortfoliosManagerComponent implements OnInit {
+  portfolioData: any;
 
-  constructor() { }
+  constructor(private portfolioService: PortfolioService) { }
 
   ngOnInit() {
+    this.portfolioData = this.portfolioService.store;
   }
 
 }
