@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { from, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 import { OktaAuthService } from '@okta/okta-angular';
 
