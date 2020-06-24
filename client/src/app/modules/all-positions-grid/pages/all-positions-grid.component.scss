@@ -1,4 +1,11 @@
+@import 'abstracts/variables';
+
+$portfolio-band: transparentize($secondary-color, 0.7);
+
 #portfolioGrid {
+  ::ng-deep .dx-group-row {
+    background: $portfolio-band;
+  }
   .positive-change {
     color: #2bb71b;
   }

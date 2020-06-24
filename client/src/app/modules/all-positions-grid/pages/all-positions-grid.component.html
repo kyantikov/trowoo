@@ -3,21 +3,21 @@
   [dataSource]="portfolioData"
   [columnAutoWidth]="true"
   [showColumnLines]="true"
+  [showRowLines]="false"
   [showBorders]="true">
 
   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"></dxo-editing>
   <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
   <dxo-scrolling mode="standard"></dxo-scrolling>
 
-  <dxi-column caption="Portfolio" dataField="portfolioName" dataType="string" [groupIndex]="0"></dxi-column>
   <dxi-column dataField="id" dataType="number" [allowEditing]="false" [visible]="false"></dxi-column>
+  <dxi-column caption="Portfolio" dataField="portfolioName" dataType="string" [groupIndex]="0"></dxi-column>
 
   <dxi-column caption="Position" [isBand]="true" alignment="center">
     <dxi-column caption="Ticker" dataField="position.security.ticker" dataType="string"></dxi-column>
     <dxi-column
       caption="Name"
       dataField="position.security.name"
-      [width]="150"
       dataType="string"></dxi-column>
     <dxi-column
       caption="Opened On"
@@ -144,7 +144,7 @@
   </dxi-column>
 
   <dxi-column caption="Trailing Stop" [isBand]="true" alignment="center">
-    <dxi-column caption="%" dataField="position.trailingStop.percent" dataType=""></dxi-column>
+    <dxi-column caption="%" dataField="position.trailingStop.percent" dataType="number"></dxi-column>
     <dxi-column caption="Peak Price" dataField="" dataType="number"></dxi-column>
     <dxi-column caption="Stop Price" dataField="" dataType="number"></dxi-column>
     <dxi-column caption="% from Peak" dataField="" dataType="number"></dxi-column>
