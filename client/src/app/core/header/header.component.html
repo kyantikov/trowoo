@@ -1,5 +1,5 @@
 <header>
-  <dx-toolbar height="80px">
+  <dx-toolbar [height]="55">
     <ng-container *ngIf="isAuth">
       <dxi-item location="before" >
         <dx-button id="menuButton" icon="menu" type="text" (onClick)="onDrawerToggle($event)"></dx-button>

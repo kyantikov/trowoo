@@ -1,6 +1,7 @@
-$header-primary-color: #51989a;
+@import 'abstracts/variables';
 
 .dx-toolbar {
-  background: $header-primary-color;
+  background: $primary-color;
   padding: 0 1em;
+  margin-bottom: 5px;
 }
