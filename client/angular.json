@@ -26,8 +26,14 @@
             "styles": [
               "node_modules/devextreme/dist/css/dx.common.css",
               "node_modules/devextreme/dist/css/dx.material.teal.dark.compact.css",
-              "src/styles.scss"
+              "node_modules/font-awesome/scss/font-awesome.scss",
+              "src/assets/scss/main.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
