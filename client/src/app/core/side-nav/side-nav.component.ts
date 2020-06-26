@@ -16,8 +16,8 @@ export class SideNavComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     this.navigation = [
-      { id: 1, text: 'Portfolios', icon: 'folder', filePath: '/portfolios' },
-      { id: 2, text: 'home', icon: 'folder', filePath: '/' },
+      { id: 1, text: 'Portfolios', icon: 'fa fa-folder fa-lg', filePath: '/portfolios'},
+      { id: 2, text: 'Positions', icon: 'fa fa-table fa-lg', filePath: '/positions' },
     ];
   }
 
@@ -27,8 +27,6 @@ export class SideNavComponent implements OnInit {
   // TODO: fix bug here where when clicking a nav item in drawer,
   //  it closes drawer but this updates value in this component, while the menu updates value in app.component
   loadView(e) {
-    console.log(this.router.url);
     this.router.navigate([e.addedItems[0].filePath]);
-    this.isDrawerOpen = !this.isDrawerOpen;
   }
 }

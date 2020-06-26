@@ -1,9 +1,10 @@
 <dx-drawer
+  [(opened)]="isDrawerOpen"
+  revealMode="expand"
   template="template"
-  revealMode="slide"
-  [height]="250"
-  [minSize]="37"
-  [(opened)]="isDrawerOpen">
+  height="100%"
+  [minSize]="55"
+  [maxSize]="200">
   <div *dxTemplate="let data of 'template'">
     <dx-list
       [items]="navigation"

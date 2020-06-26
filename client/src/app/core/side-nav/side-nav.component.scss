@@ -1,0 +1,22 @@
+@import 'abstracts/variables';
+
+$nav-panel-background: transparentize($primary-color, 0.7);
+//$nav-panel-background: transparentize($secondary-color, 0.7);
+
+::ng-deep .dx-drawer-panel-content {
+  background: $nav-panel-background;
+  border-right: #ffffff2d 1px solid;
+  .dx-list-item-content {
+    display: flex;
+    align-items: center;
+    padding-left: 1.42em;
+  }
+  .dx-list-item-icon-container {
+    margin-right: 1em;
+  }
+}
+
+.content {
+  height: 100%;
+  padding: 10px;
+}
