@@ -1,5 +1,6 @@
 <dx-data-grid
   id="portfolioGrid"
+  width="100%"
   [dataSource]="portfolioData"
   [columnAutoWidth]="true"
   [showColumnLines]="true"
@@ -15,169 +16,50 @@
 
   <dxi-column caption="Position" [isBand]="true" alignment="center">
     <dxi-column caption="Ticker" dataField="position.security.ticker" dataType="string"></dxi-column>
-    <dxi-column
-      caption="Name"
-      dataField="position.security.name"
-      dataType="string"></dxi-column>
-    <dxi-column
-      caption="Opened On"
-      dataField="position.openedDate"
-      dataType="datetime"
-      format="shortDate"></dxi-column>
-    <dxi-column
-      caption="Cost"
-      dataField="position.cost"
-      dataType="number">
+    <dxi-column caption="Name" dataField="position.security.name" dataType="string"></dxi-column>
+    <dxi-column caption="Opened On" dataField="position.openedDate" dataType="datetime" format="shortDate"></dxi-column>
+    <dxi-column caption="Cost" dataField="position.cost" dataType="number">
       <dxo-format type="currency" precision="2" currency="USD"></dxo-format>
     </dxi-column>
   </dxi-column>
 
   <dxi-column caption="Performance (% Change)" [isBand]="true" alignment="center">
-    <dxi-column
-      caption="1D"
-      dataField="position.positionPerformanceMetrics.oneDayChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="7D"
-      dataField="position.positionPerformanceMetrics.sevenDayChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="1M"
-      dataField="position.positionPerformanceMetrics.oneMonthChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="3M"
-      dataField="position.positionPerformanceMetrics.threeMonthChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="6M"
-      dataField="position.positionPerformanceMetrics.sixMonthChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="9M"
-      dataField="position.positionPerformanceMetrics.nineMonthChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="1Y"
-      dataField="position.positionPerformanceMetrics.oneYearChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="2Y"
-      dataField="position.positionPerformanceMetrics.twoYearChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="3Y"
-      dataField="position.positionPerformanceMetrics.threeYearChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="5Y"
-      dataField="position.positionPerformanceMetrics.fiveYearChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="10Y"
-      dataField="position.positionPerformanceMetrics.tenYearChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="MTD"
-      dataField="position.positionPerformanceMetrics.monthToDateChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      alignment="center"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="QTD"
-      dataField="position.positionPerformanceMetrics.quarterToDateChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="YTD"
-      dataField="position.positionPerformanceMetrics.yearToDateChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
-    <dxi-column
-      caption="ITD"
-      dataField="position.positionPerformanceMetrics.inceptionToDateChange"
-      cellTemplate="performanceCell"
-      [width]="50"
-      dataType="number"
-      format="decimal"></dxi-column>
+    <dxi-column caption="1D" dataField="position.positionPerformanceMetrics.oneDayChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="7D" dataField="position.positionPerformanceMetrics.sevenDayChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="1M" dataField="position.positionPerformanceMetrics.oneMonthChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="3M" dataField="position.positionPerformanceMetrics.threeMonthChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="6M" dataField="position.positionPerformanceMetrics.sixMonthChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="9M" dataField="position.positionPerformanceMetrics.nineMonthChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="1Y" dataField="position.positionPerformanceMetrics.oneYearChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="2Y" dataField="position.positionPerformanceMetrics.twoYearChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="3Y" dataField="position.positionPerformanceMetrics.threeYearChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="5Y" dataField="position.positionPerformanceMetrics.fiveYearChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="10Y" dataField="position.positionPerformanceMetrics.tenYearChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="MTD" dataField="position.positionPerformanceMetrics.monthToDateChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="QTD" dataField="position.positionPerformanceMetrics.quarterToDateChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="YTD" dataField="position.positionPerformanceMetrics.yearToDateChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
+    <dxi-column caption="ITD" dataField="position.positionPerformanceMetrics.inceptionToDateChange" cellTemplate="performanceCell" [width]="50" dataType="number" format="decimal"></dxi-column>
 
     <div *dxTemplate="let d of 'performanceCell'" [class]="d.value > 0 ? 'positive-change' : 'negative-change'">{{ d.value }}</div>
   </dxi-column>
 
   <dxi-column caption="Trailing Stop" [isBand]="true" alignment="center">
-    <dxi-column caption="%" dataField="position.trailingStop.percent" dataType="number"></dxi-column>
+    <dxi-column caption="%" dataField="position.trailingStop.percent" [width]="50" dataType="number"></dxi-column>
     <dxi-column caption="Peak Price" dataField="" dataType="number"></dxi-column>
     <dxi-column caption="Stop Price" dataField="" dataType="number"></dxi-column>
     <dxi-column caption="% from Peak" dataField="" dataType="number"></dxi-column>
-    <dxi-column
-      caption="Triggered?"
-      dataField=""
-      [width]="50"
-      dataType="boolean"></dxi-column>
+    <dxi-column caption="Triggered?" dataField="" [width]="50" dataType="boolean"></dxi-column>
   </dxi-column>
 
   <dxi-column caption="Target Price" [isBand]="true" alignment="center">
-    <dxi-column
-      caption="High"
-      dataField="position.highPrice.price"
-      dataType="number">
+    <dxi-column caption="High" dataField="position.highPrice.price" [width]="75" dataType="number">
       <dxo-format type="currency" precision="2" currency="USD"></dxo-format>
     </dxi-column>
-    <dxi-column
-      caption="Triggered?"
-      dataField=""
-      [width]="50"
-      dataType="boolean"></dxi-column>
-    <dxi-column
-      caption="Low"
-      dataField="position.lowPrice.price"
-      dataType="number">
+    <dxi-column caption="Triggered?" dataField="" [width]="50" dataType="boolean"></dxi-column>
+    <dxi-column caption="Low" dataField="position.lowPrice.price" [width]="75" dataType="number">
       <dxo-format type="currency" precision="2" currency="USD"></dxo-format>
     </dxi-column>
-    <dxi-column
-      caption="Triggered?"
-      dataField=""
-      [width]="50"
-      dataType="boolean"></dxi-column>
+    <dxi-column caption="Triggered?" dataField="" [width]="50" dataType="boolean"></dxi-column>
   </dxi-column>
 
 </dx-data-grid>
