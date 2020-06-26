@@ -1,11 +1,11 @@
 <header>
   <dx-toolbar [height]="55">
     <ng-container *ngIf="isAuth">
-      <dxi-item location="before" >
-        <dx-button id="menuButton" icon="menu" type="text" (onClick)="onDrawerToggle($event)"></dx-button>
+      <dxi-item location="before">
+        <dx-button id="menuButton" icon="fa fa-bars" type="text" (onClick)="onDrawerToggle($event)"></dx-button>
       </dxi-item>
       <dxi-item location="after">
-        <dx-button id="logoutButton" icon="runner" type="text" (onClick)="onLogout()"></dx-button>
+        <dx-button id="logoutButton" icon="fa fa-sign-out" type="text" (onClick)="onLogout()"></dx-button>
       </dxi-item>
     </ng-container>
     <dxi-item location="center" text="trowoo"></dxi-item>
